@@ -96,40 +96,65 @@
   </div>
 
 
-  <!-- SECTION 2: Ecomobility -->
-  <div class="section-card">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="logo-pill green">
-          <img src="assets/ecomobility-logo.png" alt="Ecomobility">
-          <div class="d-flex flex-column">
-            <strong>Ecomobility</strong>
-          </div>
-        </span>
-        <h2 class="section-title h3">Behavior Cloning σε αυτόνομα οχήματα για έξυπνες πόλεις</h2>
-      </div>
-
-      <div class="row g-4 align-items-start">
-        <div class="col-md-7">
-          <p class="lead-compact"><strong>Στόχος:</strong> πολιτική οδήγησης από expert demonstrations.</p>
-          <p class="lead-compact"><strong>Ροή:</strong> συλλογή trajectories → εκπαίδευση → αξιολόγηση.</p>
-          <p class="lead-compact"><strong>Εργαλεία:</strong> CARLA, PyTorch, ROS 2 integration.</p>
-          <p class="lead-compact"><strong>Χρήσεις:</strong> tele-ops, μικροκινητικότητα, city logistics.</p>
+<!-- SECTION 2: Behavior Cloning -->
+<div class="section-card">
+  <div class="section-inner">
+    <div class="section-header">
+      <!-- LOGO πάνω από τον τίτλο -->
+      <span class="logo-pill green">
+        <img src="assets/ecomobility-logo.png" alt="Ecomobility logo">
+        <div class="d-flex flex-column">
+          <span class="kicker">Learning from Demonstrations</span>
+          <strong>Ecomobility</strong>
         </div>
-        <div class="col-md-5">
-          <ul class="feature-list">
-            <li><i class="bi bi-diagram-3"></i><div class="text">Policy distillation & safety gating</div></li>
-            <li><i class="bi bi-collection-play"></i><div class="text">Offline/online dataset με controls & video</div></li>
-            <li><i class="bi bi-shield-check"></i><div class="text">Fail-safes & monitoring για παραγωγή</div></li>
-          </ul>
-        </div>
-      </div>
+      </span>
+      <h2 class="section-title h3">Behavior Cloning σε αυτόνομα οχήματα για έξυπνες πόλεις</h2>
     </div>
 
-    <div class="hero-wrap">
-      <img class="hero-image hero-ratio hero-rounded" src="assets/bc-hero.jpg" alt="Behavior Cloning demo">
+    <div class="row g-4 align-items-start">
+      <!-- Αριστερά: περιγραφή -->
+      <div class="col-md-7">
+        <p class="lead-compact">
+          Το behavior cloning αποτελεί μια μέθοδο μίμησης, όπου το μοντέλο εκπαιδεύεται να αντιγράφει τις ενέργειες ενός expert οδηγού.
+          Η διαδικασία περιλαμβάνει τη συλλογή δεδομένων (εικόνες + ενέργειες), την εκπαίδευση ενός νευρωνικού δικτύου για να χαρτογραφεί
+          είσοδο σε ενέργεια, και την εφαρμογή του δικτύου σε πραγματικό ή προσομοιωμένο όχημα για εκτέλεση της πορείας.
+        </p>
+      </div>
+
+      <!-- Δεξιά: bullets (pipeline) -->
+      <div class="col-md-5">
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-camera-video"></i>
+            <div class="text"><strong>Data Collection:</strong> Καταγραφή εικόνων από την κάμερα του οχήματος και των αντίστοιχων ενεργειών του expert.</div>
+          </li>
+          <li>
+            <i class="bi bi-cpu"></i>
+            <div class="text"><strong>Training:</strong> Χρήση CNN για εξαγωγή χαρακτηριστικών από τις εικόνες και εκπαίδευση fully connected δικτύου για πρόβλεψη ενέργειας.</div>
+          </li>
+          <li>
+            <i class="bi bi-diagram-3"></i>
+            <div class="text"><strong>Policy Representation:</strong> Output ως πιθανότητες ή one-hot για {μπροστά, δεξιά, αριστερά, στοπ}.</div>
+          </li>
+          <li>
+            <i class="bi bi-speedometer2"></i>
+            <div class="text"><strong>Execution:</strong> Μετάφραση προβλέψεων σε εντολές ελέγχου (throttle, steer, brake) στο CARLA.</div>
+          </li>
+          <li>
+            <i class="bi bi-graph-up"></i>
+            <div class="text"><strong>Evaluation:</strong> Παρακολούθηση τροχιάς και σύγκριση με expert demonstrations.</div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <!-- Εικόνα (16:9, ίδια εμφάνιση με τα άλλα sections) -->
+  <div class="hero-wrap">
+    <img class="hero-image hero-ratio hero-rounded" src="assets/ecomobility.png" alt="Behavior Cloning demo">
+  </div>
+</div>
+
 
 </div>
 
