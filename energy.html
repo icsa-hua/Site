@@ -61,11 +61,11 @@
 
     <!-- Εικόνα (16:9) -->
     <div class="hero-wrap">
-      <img class="hero-image hero-ratio hero-rounded" src="assets/powerizeD_flow.png" alt="POWERIZED demo">
+      <img class="hero-image" src="assets/powerizeD_flow.png" alt="POWERIZED demo">
     </div>
   </div>
 
-<!-- SECTION 2: Shape Future -->
+<!-- SECTION 2: CoDrones -->
   <div class="section-card">
     <div class="section-inner">
       <div class="section-header">
@@ -77,26 +77,55 @@
         </span>
         <h2 class="section-title h3">Εύρεση Καλύτερου Μονοπατιού με Βάση την Ενέργεια</h2>
       </div>
+ <div class="row g-4 align-items-start">
+      <!-- Αριστερά: σύντομη περιγραφή -->
+      <div class="col-md-7">
+        <p class="lead-compact">
+          Σχεδιάζουμε διαδρομές UAV με κριτήριο το ενεργειακό κόστος, συνδυάζοντας μοντέλο ενέργειας πτήσης με επιχειρησιακούς περιορισμούς.
+          Το περιβάλλον ορίζεται από τις συντεταγμένες της περιοχής και παραμέτρους ατμόσφαιρας/οχήματος.
+          Έπειτα ορίζονται μεταβλητές απόφασης και συναρτήσεις στόχου και γίνεται βελτιστοποίηση με αλγορίθμους αναζήτησης.
+          Το αποτέλεσμα είναι συντονισμένο πλάνο διαδρομής και εκτίμηση υπολειπόμενης ενέργειας.
+        </p>
+      </div>
 
-      <div class="row g-4 align-items-start">
-        <div class="col-md-7">
-          <p class="lead-compact"><strong>Στόχος:</strong> πολιτική οδήγησης από expert demonstrations.</p>
-          <p class="lead-compact"><strong>Ροή:</strong> συλλογή trajectories → εκπαίδευση → αξιολόγηση.</p>
-          <p class="lead-compact"><strong>Εργαλεία:</strong> CARLA, PyTorch, ROS 2 integration.</p>
-          <p class="lead-compact"><strong>Χρήσεις:</strong> tele-ops, μικροκινητικότητα, city logistics.</p>
-        </div>
-        <div class="col-md-5">
-          <ul class="feature-list">
-            <li><i class="bi bi-diagram-3"></i><div class="text">Policy distillation & safety gating</div></li>
-            <li><i class="bi bi-collection-play"></i><div class="text">Offline/online dataset με controls & video</div></li>
-            <li><i class="bi bi-shield-check"></i><div class="text">Fail-safes & monitoring για παραγωγή</div></li>
-          </ul>
-        </div>
+      <!-- Δεξιά: bullets -->
+      <div class="col-md-5">
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-battery-charging"></i>
+            <div class="text">
+              <strong>Μοντέλο Ενέργειας:</strong> αεροδυναμική αντίσταση (profile drag), κινητικότητα, προδιαγραφές UAV,
+              λειτουργίες σταθμών βάσης χαμηλού ύψους, πυκνότητα αέρα, βαρυτικό δυναμικό.
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-sliders"></i>
+            <div class="text">
+              <strong>Περιορισμοί:</strong> είσοδοι/έξοδοι, ενέργεια διαδρομής, συγχρονισμός χρόνου,
+              αποφυγή συγκρούσεων, επιτρεπόμενες/απαιτούμενες επισκέψεις.
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-diagram-3"></i>
+            <div class="text">
+              <strong>Βελτιστοποίηση:</strong> περιφερειοποίηση (ομαδοποίηση βάσει ενέργειας) →
+              γενετικός αλγόριθμος (δυναμική κίνηση CUE) →
+              προτεραιοποίηση με TOPSIS.
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-flag-checkered"></i>
+            <div class="text">
+              <strong>Έξοδοι:</strong> Συντονισμένο Πλάνο Διαδρομής & Υπολειπόμενη Ενέργεια.
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 
     <div class="hero-wrap">
-      <img class="hero-image hero-ratio hero-rounded" src="assets/bc-hero.jpg" alt="CoDrones demo">
+      <img class="hero-image hero-ratio hero-rounded" src="assets/coDrones_framework.png" alt="CoDrones demo">
     </div>
   </div>
   
@@ -110,28 +139,44 @@
             <strong>Archimedes</strong>
           </div>
         </span>
-        <h2 class="section-title h3">Εύρεση Καλύτερου Μονοπατιού με Βάση την Ενέργεια</h2>
+        <h2 class="section-title h3">Ανίχνευση Πυρκαγιάς σε Τούνελ – Κρίσιμη Υποδομή</h2>
       </div>
 
-      <div class="row g-4 align-items-start">
-        <div class="col-md-7">
-          <p class="lead-compact"><strong>Στόχος:</strong> πολιτική οδήγησης από expert demonstrations.</p>
-          <p class="lead-compact"><strong>Ροή:</strong> συλλογή trajectories → εκπαίδευση → αξιολόγηση.</p>
-          <p class="lead-compact"><strong>Εργαλεία:</strong> CARLA, PyTorch, ROS 2 integration.</p>
-          <p class="lead-compact"><strong>Χρήσεις:</strong> tele-ops, μικροκινητικότητα, city logistics.</p>
-        </div>
-        <div class="col-md-5">
-          <ul class="feature-list">
-            <li><i class="bi bi-diagram-3"></i><div class="text">Policy distillation & safety gating</div></li>
-            <li><i class="bi bi-collection-play"></i><div class="text">Offline/online dataset με controls & video</div></li>
-            <li><i class="bi bi-shield-check"></i><div class="text">Fail-safes & monitoring για παραγωγή</div></li>
-          </ul>
-        </div>
+<div class="row g-4 align-items-start">
+      <!-- Αριστερά: περιγραφή -->
+      <div class="col-md-7">
+        <p class="lead-compact">
+          Το Fire Alert Detection εφαρμόζεται σε σενάρια κρίσιμων υποδομών, όπως σήραγγες μεταφορών,
+          όπου η έγκαιρη ανίχνευση πυρκαγιάς είναι ζωτικής σημασίας για την ασφάλεια.
+          Η διαδικασία βασίζεται σε προ-επεξεργασία εικόνας και monitoring, με τελικό στάδιο την παραγωγή ειδοποίησης μέσω LLM.
+          Έτσι εξασφαλίζεται ταχύτερη αντίδραση και καλύτερη προστασία της υποδομής και των χρηστών.
+        </p>
       </div>
-    </div>
+
+      <!-- Δεξιά: bullets -->
+      <div class="col-md-5">
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-building"></i>
+            <div class="text"><strong>Περιβάλλον εφαρμογής:</strong> σήραγγες / κρίσιμες υποδομές μεταφορών.</div>
+          </li>
+          <li>
+            <i class="bi bi-sliders"></i>
+            <div class="text"><strong>Προ-επεξεργασία εικόνας:</strong> μαθηματικά φίλτρα, thresholds, ανίχνευση flicker & αλλαγών φωτεινότητας.</div>
+          </li>
+          <li>
+            <i class="bi bi-clipboard-check"></i>
+            <div class="text"><strong>Monitoring & Report:</strong> συνεχής παρακολούθηση και δημιουργία αναφορών.</div>
+          </li>
+          <li>
+            <i class="bi bi-megaphone"></i>
+            <div class="text"><strong>LLM Output:</strong> τελική ειδοποίηση πυρκαγιάς για άμεση ενεργοποίηση πρωτοκόλλων ασφάλειας.</div>
+          </li>
+        </ul>
+      </div>
 
     <div class="hero-wrap">
-      <img class="hero-image hero-ratio hero-rounded" src="assets/bc-hero.jpg" alt="CoDrones demo">
+      <img class="hero-image" src="assets/archiemedes_framework.png" alt="CoDrones demo">
     </div>
   </div>
 

@@ -73,25 +73,45 @@
         <h2 class="section-title h3">Acceptance και Correlation Analysis</h2>
       </div>
 
-      <div class="row g-4 align-items-start">
-        <div class="col-md-7">
-          <p class="lead-compact"><strong>Στόχος:</strong> πολιτική οδήγησης από expert demonstrations.</p>
-          <p class="lead-compact"><strong>Ροή:</strong> συλλογή trajectories → εκπαίδευση → αξιολόγηση.</p>
-          <p class="lead-compact"><strong>Εργαλεία:</strong> CARLA, PyTorch, ROS 2 integration.</p>
-          <p class="lead-compact"><strong>Χρήσεις:</strong> tele-ops, μικροκινητικότητα, city logistics.</p>
-        </div>
-        <div class="col-md-5">
-          <ul class="feature-list">
-            <li><i class="bi bi-diagram-3"></i><div class="text">Policy distillation & safety gating</div></li>
-            <li><i class="bi bi-collection-play"></i><div class="text">Offline/online dataset με controls & video</div></li>
-            <li><i class="bi bi-shield-check"></i><div class="text">Fail-safes & monitoring για παραγωγή</div></li>
-          </ul>
-        </div>
+ <div class="row g-4 align-items-start">
+      <!-- Αριστερά: 4 γραμμές περιγραφής -->
+      <div class="col-md-7">
+        <p class="lead-compact">
+          Η ανάλυση αποδοχής βασίζεται σε ερωτηματολόγια με παράγοντες PT, PU, PEU, SI, FC.
+          Υπολογίζονται μέσοι όροι και δείκτες (BIU, BU) με στατιστικούς τύπους.
+          Τα αποτελέσματα οπτικοποιούνται με plots και acceptance meters.
+          Η αξιολόγηση γίνεται ανά φύλο (συμπεριλαμβανομένων non-binary) και συνοδεύεται από insights (δοκιμή και με Gemma3).
+        </p>
       </div>
-    </div>
+
+      <!-- Δεξιά: bullets -->
+      <div class="col-md-5">
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-ui-checks"></i>
+            <div class="text"><strong>Παράγοντες:</strong> PT, PU, PEU, SI, FC</div>
+          </li>
+          <li>
+            <i class="bi bi-graph-up"></i>
+            <div class="text"><strong>Metrics:</strong> BIU &amp; BU, μέσοι όροι παραγόντων</div>
+          </li>
+          <li>
+            <i class="bi bi-bar-chart-line"></i>
+            <div class="text"><strong>Οπτικοποίηση:</strong> plots, acceptance meters</div>
+          </li>
+          <li>
+            <i class="bi bi-people"></i>
+            <div class="text"><strong>Gender Analysis:</strong> διαφορές ανά φύλο, non-binary</div>
+          </li>
+          <li>
+            <i class="bi bi-lightbulb"></i>
+            <div class="text"><strong>LLM Insights:</strong> σύνοψη &amp; ερμηνεία, δοκιμή και με Gemma3</div>
+          </li>
+        </ul>
+      </div>
 
     <div class="hero-wrap">
-      <img class="hero-image hero-ratio hero-rounded" src="assets/bc-hero.jpg" alt="Behavior Cloning demo">
+      <img class="hero-image" src="assets/csv.png" alt="Acceptance demo">
     </div>
   </div>
   
