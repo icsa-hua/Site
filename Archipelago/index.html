@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archipelago + K2W — Βραδιά του Ερευνητή</title>
+<style>
+  :root {
+    --cream: #F7F1E6;
+    --ink: #3B332A;
+    --ink-soft: #6B5F4F;
+    --line: rgba(59, 51, 42, 0.14);
+    --accent: #A6763A;
+    --accent-soft: #EFE0C4;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 72px;
+  }
+  .top {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .back {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .back:hover { color: var(--ink); }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  main {
+    width: 100%;
+    max-width: 900px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .lede {
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 32px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  section h2 {
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  section > p.desc {
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Platforms */
+  .platforms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) {
+    .platforms { grid-template-columns: 1fr; }
+  }
+  .platform-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+  }
+  .platform-card .tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .platform-card .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .platform-card .icon-row .icon { font-size: 1.4rem; }
+  .platform-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .platform-card .flow-label {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .platform-card p.blurb {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0 0 10px;
+  }
+  .platform-card .question {
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--ink);
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 0 0 16px;
+  }
+  .platform-card .spacer { flex: 1; }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    width: fit-content;
+  }
+  .status.live {
+    background: #FBEAE0;
+    color: #A34A22;
+  }
+  .status.dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+  .status.pending {
+    background: var(--line);
+    color: var(--ink-soft);
+  }
+  .platform-card .launch {
+    margin-top: 12px;
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  .platform-card .launch-note {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  /* HyDE gap diagram */
+  .gap {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 640px) {
+    .gap { grid-template-columns: 1fr; }
+    .gap .sign { transform: rotate(90deg); }
+  }
+  .gap-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .gap-box .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .gap-box .content {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .gap .sign {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+
+  /* HyDE flow */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 700px) {
+    .flow { grid-template-columns: 1fr; }
+  }
+  .flow-step {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.3rem;
+    padding: 0 4px;
+  }
+  @media (max-width: 700px) {
+    .flow-arrow { transform: rotate(90deg); padding: 6px 0; }
+  }
+  .flow-step .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin: 0 auto 12px;
+  }
+  .flow-step .step-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .flow-step h3 {
+    font-size: 1rem;
+    margin: 0 0 8px;
+  }
+  .flow-step p {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .note {
+    background: var(--accent-soft);
+    border-radius: 14px;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+
+  .questions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 700px) {
+    .questions { grid-template-columns: 1fr; }
+  }
+  .qcard {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .qcard h4 {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+  }
+  .qcard p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <a class="back" href="../index.html">&larr; Πίσω στην πύλη</a>
+    <span class="badge">D</span>
+  </div>
+  <main>
+    <h1>Archipelago + K2W</h1>
+    <p class="subtitle">Δύο έργα · Ένα ερευνητικό ερώτημα</p>
+    <p class="lede">Η σωστή ευκαιρία για τον σωστό άνθρωπο.</p>
+    <hr>
+
+    <section>
+      <h2><span class="num">1</span> Οι δύο πλατφόρμες</h2>
+      <p class="desc">Ίδια ερευνητική μέθοδος, δύο διαφορετικά κοινά — φοιτητές που αναζητούν πρακτική άσκηση, και ακαδημαϊκή κοινότητα που αναζητά υλικό κατάρτισης.</p>
+
+      <div class="platforms">
+        <div class="platform-card">
+          <div class="tag">K2W · SkillsBox · Erasmus+</div>
+          <div class="icon-row">
+            <span class="icon">🎓</span>
+            <h3>K2W</h3>
+          </div>
+          <div class="flow-label">Φοιτητής → Πρακτική άσκηση</div>
+          <p class="blurb">Εργαλείο ετοιμότητας για την αγορά εργασίας σε πανεπιστήμια των Δυτικών Βαλκανίων.</p>
+          <p class="question">«Ποια πρακτική ταιριάζει σε ό,τι ξέρω και σε ό,τι θέλω;»</p>
+          <div class="spacer"></div>
+          <span class="status pending"><span class="dot"></span> Δεν έχει αναπτυχθεί ακόμη</span>
+        </div>
+
+        <div class="platform-card">
+          <div class="tag">Archipelago · Erasmus+</div>
+          <div class="icon-row">
+            <span class="icon">📚</span>
+            <h3>Archipelago</h3>
+          </div>
+          <div class="flow-label">Ακαδημαϊκός → Υλικό κατάρτισης</div>
+          <p class="blurb">Ψηφιακά toolkits για ακαδημαϊκό προσωπικό, διοικητικούς και φοιτητές.</p>
+          <p class="question">«Ποιο υλικό καλύπτει αυτό που χρειάζομαι τώρα;»</p>
+          <div class="spacer"></div>
+          <span class="status live"><span class="dot"></span> Εκτός λειτουργίας αυτή τη στιγμή</span>
+          <a class="launch" href="http://localhost:PORT" target="_blank" rel="noopener">Άνοιγμα πλατφόρμας →</a>
+          <p class="launch-note">Τρέχει τοπικά μέσω Docker. Αντικαταστήστε το PORT στο href με τη σωστή θύρα.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span> Αρχιτεκτονική · Το πρωτόκολλο HyDE</h2>
+      <p class="desc">Και οι δύο πλατφόρμες μοιράζονται την ίδια ερευνητική πρόκληση: ο άνθρωπος και η ευκαιρία μιλούν διαφορετική «γλώσσα».</p>
+
+      <div class="gap">
+        <div class="gap-box">
+          <div class="label">Ο άνθρωπος λέει</div>
+          <div class="content">ενδιαφέροντα, δεξιότητες, στόχους</div>
+        </div>
+        <div class="sign">≠</div>
+        <div class="gap-box">
+          <div class="label">Η ευκαιρία λέει</div>
+          <div class="content">απαιτήσεις, μαθησιακά αποτελέσματα</div>
+        </div>
+      </div>
+
+      <p class="desc" style="margin-bottom: 14px;">Εκεί μπαίνει το <strong>HyDE</strong> (Hypothetical Document Embeddings) — «πρώτα φανταζόμαστε, μετά ψάχνουμε».</p>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="icon">💭</div>
+          <div class="step-num">Βήμα 1</div>
+          <h3>Φαντασία</h3>
+          <p>Ένα τοπικό LLM διαβάζει το προφίλ του ανθρώπου και φαντάζεται μια υποθετική, ιδανική ευκαιρία που θα του ταίριαζε.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="icon">🧭</div>
+          <div class="step-num">Βήμα 2</div>
+          <h3>Ενσωμάτωση</h3>
+          <p>Η υποθετική περιγραφή μετατρέπεται σε ένα σημασιολογικό διάνυσμα (E5, 384 διαστάσεων), στην ίδια «γλώσσα» με τις πραγματικές ευκαιρίες.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="icon">🔎</div>
+          <div class="step-num">Βήμα 3</div>
+          <h3>Αναζήτηση</h3>
+          <p>Συγκρίνεται με τις ενσωματώσεις πραγματικών ευκαιριών/υλικού και επιστρέφονται οι πιο κοντινές, κατά σειρά ομοιότητας.</p>
+        </div>
+      </div>
+
+      <div class="note">Το LLM δεν προτείνει — μόνο «μεταφράζει». Οι προτάσεις είναι πάντα πραγματικές, υπαρκτές ευκαιρίες.</div>
+
+      <p class="desc" style="margin-bottom: 14px;">Τρία ερευνητικά ερωτήματα καθοδηγούν την αξιολόγηση:</p>
+      <div class="questions">
+        <div class="qcard">
+          <h4>Βοηθά η «φαντασία»;</h4>
+          <p>HyDE έναντι BM25 και Direct-E5 (nDCG@5, MRR).</p>
+        </div>
+        <div class="qcard">
+          <h4>Αρκεί ένα μικρό LLM;</h4>
+          <p>Ποιότητα έναντι χρόνου και μνήμης, χωρίς GPU server — τρέχει τοπικά σε καταναλωτικό hardware.</p>
+        </div>
+        <div class="qcard">
+          <h4>Γενικεύει;</h4>
+          <p>Δύο διαφορετικές εργασίες: πρακτική άσκηση (K2W) και εκπαιδευτικό υλικό (Archipelago).</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      ARCHIPELAGO &amp; K2W · Erasmus+ · Χαροκόπειο Πανεπιστήμιο<br>
+      ICSA · ΧΠΑ · εργασία σε εξέλιξη
+    </footer>
+  </main>
+</body>
+</html>

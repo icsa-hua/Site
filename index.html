@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Βραδιά του Ερευνητή — Research Projects</title>
+<style>
+  :root {
+    --cream: #F7F1E6;
+    --cream-deep: #EFE6D6;
+    --ink: #3B332A;
+    --ink-soft: #6B5F4F;
+    --line: rgba(59, 51, 42, 0.14);
+    --card-mosaic: #E4C9B6;
+    --card-remerge: #C9D3C1;
+    --card-codrones: #C3CBD6;
+    --card-archipelago: #E3D3A6;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 64px;
+  }
+
+  header {
+    width: 100%;
+    max-width: 1080px;
+  }
+
+  .logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 8px 0 28px;
+  }
+
+  .logos img {
+    display: block;
+    object-fit: contain;
+  }
+
+  .logo-hua { height: 52px; }
+  .logo-vradia { height: 78px; }
+  .logo-icsa { height: 52px; }
+
+  .logos > a:first-child { order: 1; }
+  .logos > a:nth-child(2) { order: 2; margin: 0 auto; }
+  .logos > a:last-child { order: 3; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 0 40px;
+  }
+
+  .intro {
+    width: 100%;
+    max-width: 1080px;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .intro h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .intro p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+
+  main {
+    width: 100%;
+    max-width: 1080px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  @media (max-width: 680px) {
+    .grid { grid-template-columns: 1fr; }
+    .logo-vradia { height: 64px; }
+    .logo-hua, .logo-icsa { height: 42px; }
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    height: 260px;
+    border-radius: 22px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--card-color);
+    background-image: var(--card-image, none), linear-gradient(var(--card-color), var(--card-color));
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 6px rgba(59, 51, 42, 0.08), 0 10px 24px rgba(59, 51, 42, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card:hover, .card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(59, 51, 42, 0.12), 0 18px 32px rgba(59, 51, 42, 0.12);
+  }
+
+  .card:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%);
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-text {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+  }
+
+  .card-text h2 {
+    margin: 0 0 4px;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .card-text span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.92;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logos">
+      <a href="https://www.hua.gr/" target="_blank" rel="noopener">
+        <img class="logo-hua" src="HUA_Logo.png" alt="Harokopio University of Athens logo">
+      </a>
+      <a href="#">
+        <img class="logo-vradia" src="vradia_logo_stamp.png" alt="Βραδιά του Ερευνητή logo">
+      </a>
+      <a href="#">
+        <img class="logo-icsa" src="icsa-logo.png" alt="ICSA logo">
+      </a>
+    </div>
+  </header>
+
+  <hr>
+
+  <div class="intro">
+    <h1>Research Projects</h1>
+    <p>Explore our work — select a project below.</p>
+  </div>
+
+  <main>
+    <div class="grid">
+
+      <a class="card" style="--card-color: var(--card-mosaic); --card-image: url('Mosaic/cover.jpg');" href="Mosaic/index.html">
+        <div class="card-overlay"></div>
+        <div class="card-badge">A</div>
+        <div class="card-text">
+          <h2>Mosaic</h2>
+          <span>View project →</span>
+        </div>
+      </a>
+
+      <a class="card" style="--card-color: var(--card-remerge); --card-image: url('Remerge/cover.jpg');" href="Remerge/index.html">
+        <div class="card-overlay"></div>
+        <div class="card-badge">B</div>
+        <div class="card-text">
+          <h2>Remerge</h2>
+          <span>View project →</span>
+        </div>
+      </a>
+
+      <a class="card" style="--card-color: var(--card-codrones); --card-image: url('Codrones/cover.jpg');" href="Codrones/index.html">
+        <div class="card-overlay"></div>
+        <div class="card-badge">C</div>
+        <div class="card-text">
+          <h2>CoDrones</h2>
+          <span>View project →</span>
+        </div>
+      </a>
+
+      <a class="card" style="--card-color: var(--card-archipelago); --card-image: url('Archipelago/cover.jpg');" href="Archipelago/index.html">
+        <div class="card-overlay"></div>
+        <div class="card-badge">D</div>
+        <div class="card-text">
+          <h2>Archipelago + K2W</h2>
+          <span>View project →</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoDrones — Βραδιά του Ερευνητή</title>
+<style>
+  :root {
+    --cream: #F7F1E6;
+    --ink: #3B332A;
+    --ink-soft: #6B5F4F;
+    --line: rgba(59, 51, 42, 0.14);
+    --accent: #5C7A99;
+    --accent-soft: #DCE4EC;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 72px;
+  }
+  .top {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .back {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .back:hover { color: var(--ink); }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  main {
+    width: 100%;
+    max-width: 900px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 32px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  section h2 {
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  section > p.desc {
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .figure {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px;
+  }
+  .figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .figure figcaption {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .example-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) {
+    .example-grid { grid-template-columns: 1fr; }
+  }
+
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 18px;
+    font-size: 0.85rem;
+  }
+  table.compare caption {
+    text-align: left;
+    padding: 14px 18px 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    caption-side: top;
+  }
+  table.compare th, table.compare td {
+    text-align: left;
+    padding: 10px 14px;
+    border-top: 1px solid var(--line);
+  }
+  table.compare th {
+    background: var(--accent-soft);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  table.compare tr.selected td {
+    font-weight: 700;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .stat .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .video-missing {
+    background: #fff;
+    border: 1px dashed var(--line);
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .links {
+    margin-top: 8px;
+  }
+  .links a {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <a class="back" href="../index.html">&larr; Back to portal</a>
+    <span class="badge">C</span>
+  </div>
+  <main>
+    <h1>CoDrones</h1>
+    <p class="subtitle">A Knowledge Distillation Framework for Edge-Aware Optimization of Intelligent Data</p>
+    <hr>
+
+    <section>
+      <h2><span class="num">1</span> Architecture</h2>
+      <p class="desc">An annotation-free, edge-aware teacher–student pipeline. A high-capacity foundation model (teacher) generates pixel-level segmentation masks from unlabeled images using text prompts — no manual labels required. These masks train a lightweight student model that runs entirely on RGB input, deployable on CPU-only edge hardware such as an onboard drone computer.</p>
+      <figure class="figure">
+        <img src="architecture.png" alt="Teacher-student framework: text and image encoders produce intelligent data and masks, which become pseudo-labels used to train a lightweight student model producing the final output">
+        <figcaption>Overview of the proposed edge-aware teacher–student framework: unlabeled BoWFire / FLAME imagery and a text prompt are encoded, the foundation-model teacher generates masks as intelligent data, and the resulting pseudo-labels train a compact student model for on-device inference.</figcaption>
+      </figure>
+
+      <table class="compare">
+        <caption>Candidate teacher models considered for text-conditioned mask generation. SAM3 was selected for its native concept-level text prompting and strongest zero-shot, instance-level segmentation.</caption>
+        <thead>
+          <tr><th>Model</th><th>Prompt type</th><th>Zero-shot</th><th>Video</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CLIPSeg</td><td>Text</td><td>Yes</td><td>No</td></tr>
+          <tr><td>SAM (original)</td><td>Points / boxes / masks</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Grounded-SAM</td><td>Text + boxes / points</td><td>Yes</td><td>No</td></tr>
+          <tr><td>SAM2</td><td>Multimodal</td><td>Yes</td><td>Yes</td></tr>
+          <tr class="selected"><td>SAM3 (used)</td><td>Concept-level (text / image)</td><td>Yes</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+      <p class="desc" style="margin-top: 14px;">Student: DeepLabV3 with a MobileNet backbone, trained exclusively on SAM3-generated pseudo-labels for the BoWFire + FLAME fire-segmentation task.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span> Examples</h2>
+      <p class="desc">Evaluated on a fire-segmentation case study, combining urban/indoor (BoWFire) and wildfire (FLAME) footage, with zero manual annotations used at any point in training.</p>
+      <div class="example-grid">
+        <figure class="figure">
+          <img src="qualitative.png" alt="RGB input, teacher-generated mask, and student prediction overlay for a wildfire scene">
+          <figcaption>RGB input, teacher pseudo-label (SAM3), and the student model's prediction overlay — the compact student reproduces the teacher's semantic decisions despite never seeing a manual annotation.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="confusion.png" alt="Teacher-student confusion matrix for fire presence, showing 99.2% agreement and zero false negatives">
+          <figcaption>Image-level agreement between teacher and student: 99.2% overall agreement, with zero false negatives — the student never misses a fire the teacher detected.</figcaption>
+        </figure>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="value">0.685</div>
+          <div class="label">Teacher–Student Dice score</div>
+        </div>
+        <div class="stat">
+          <div class="value">0.747</div>
+          <div class="label">flip-consistency IoU (prediction stability)</div>
+        </div>
+        <div class="stat">
+          <div class="value">8.13 FPS</div>
+          <div class="label">CPU-only inference, 123 ms/frame</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span> Video</h2>
+      <p class="desc">A demonstration video for this project is in progress.</p>
+      <div class="video-missing">Video coming soon</div>
+    </section>
+
+    <div class="links">
+      <a href="A_Knowledge_Distillation_Framework_for_Edge-Aware_Optimization_of_Intelligent_Data.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+    </div>
+  </main>
+</body>
+</html>

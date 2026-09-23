@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosaic — Βραδιά του Ερευνητή</title>
+<style>
+  :root {
+    --cream: #F7F1E6;
+    --ink: #3B332A;
+    --ink-soft: #6B5F4F;
+    --line: rgba(59, 51, 42, 0.14);
+    --accent: #E4C9B6;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 72px;
+  }
+  .top {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .back {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .back:hover { color: var(--ink); }
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  main {
+    width: 100%;
+    max-width: 900px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 32px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  section h2 {
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  section > p.desc {
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .figure {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px;
+  }
+  .figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .figure figcaption {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .example-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) {
+    .example-grid { grid-template-columns: 1fr; }
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .stat .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  video {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    background: #000;
+  }
+  .video-missing {
+    background: #fff;
+    border: 1px dashed var(--line);
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .links {
+    margin-top: 8px;
+  }
+  .links a {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <a class="back" href="../index.html">&larr; Back to portal</a>
+    <span class="badge">A</span>
+  </div>
+  <main>
+    <h1>Mosaic</h1>
+    <p class="subtitle">Real-Time Interpretable Monocular Motion Forecasting and Reactive Navigation for Autonomous Surface Vehicles</p>
+    <hr>
+
+    <section>
+      <h2><span class="num">1</span> Architecture</h2>
+      <p class="desc">A complete, real-time (70 FPS), GPS-free monocular pipeline: a forward-facing camera feeds dense optical flow and ego-motion estimation, which drives a Kalman-filtered short-horizon forecast, a residual-flow risk map, and finally a policy-and-safety layer that issues steering, throttle and a plain-language explanation — every stage in image space only, with no GPS, map, depth sensor or absolute scale.</p>
+      <figure class="figure">
+        <img src="architecture.png" alt="Mosaic system architecture: RGB frame to dense flow and ego-motion, to Kalman forecast, to residual risk map, to policy and safety, output steer, throttle and explanation">
+        <figcaption>System overview. Everything left of the policy block operates purely in image space. Each stage emits an inspectable quantity, and the predicted heading is the common frame of reference shared by the risk map and the command.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span> Examples</h2>
+      <p class="desc">Evaluated on real ASV footage against explicit bracketing baselines (zero-motion floor, constant velocity, hindsight oracle) rather than self-consistency alone. The forecast cuts endpoint error by 86% relative to the zero-motion floor and stays within 12.6–13.7% relative error across horizons.</p>
+      <div class="example-grid">
+        <figure class="figure">
+          <img src="results.png" alt="Forecast accuracy plots: error growth against baselines, and cumulative distribution of relative endpoint error">
+          <figcaption>Left: error growth against the bracketing baselines (log scale). Right: cumulative distribution of relative endpoint error — the median frame is accurate to roughly 11% at every horizon.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="demo.png" alt="Live instrument view on real footage showing the forecast envelope, residual-flow risk grid, and commanded action">
+          <figcaption>Live instrument view: the forecast envelope is drawn from the bow, the residual-flow grid and commanded detents are shown alongside a plain-language justification for every command.</figcaption>
+        </figure>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="value">70 FPS</div>
+          <div class="label">end-to-end, commodity CPU, no GPU</div>
+        </div>
+        <div class="stat">
+          <div class="value">86%</div>
+          <div class="label">error reduction vs. zero-motion floor</div>
+        </div>
+        <div class="stat">
+          <div class="value">13.1%</div>
+          <div class="label">relative displacement error at 1 s horizon</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span> Video</h2>
+      <p class="desc">A short walkthrough of the system running on real footage.</p>
+      <video controls preload="metadata" poster="demo.png">
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <div class="links">
+      <a href="main.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+    </div>
+  </main>
+</body>
+</html>
