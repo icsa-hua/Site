@@ -4,21 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Remerge — Βραδιά του Ερευνητή</title>
+<link rel="stylesheet" href="../assets/theme.css">
 <style>
   :root {
-    --cream: #F7F1E6;
-    --ink: #3B332A;
-    --ink-soft: #6B5F4F;
-    --line: rgba(59, 51, 42, 0.14);
-    --accent: #3E9C93;
-    --accent-soft: #DCEAE7;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+    --accent: #4FC7B8;
+    --accent-soft: rgba(79, 199, 184, 0.16);
   }
   body {
     min-height: 100vh;
@@ -36,12 +26,12 @@
     margin-bottom: 24px;
   }
   .back {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
   }
-  .back:hover { color: var(--ink); }
+  .back:hover { color: var(--text); }
   .badge {
     display: inline-block;
     background: var(--accent-soft);
@@ -65,6 +55,8 @@
     width: 56px;
     height: 56px;
     flex: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
   }
   h1 {
     font-size: 2.1rem;
@@ -72,14 +64,14 @@
     font-weight: 700;
   }
   .subtitle {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin: 10px 0 6px;
     font-size: 1.05rem;
     font-style: italic;
     line-height: 1.5;
   }
   .lede {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin: 0 0 24px;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -106,29 +98,30 @@
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: var(--ink);
-    color: var(--cream);
+    background: var(--accent);
+    color: var(--bg);
     font-size: 0.8rem;
     font-weight: 700;
   }
   section > p.desc {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin: 0 0 20px;
     font-size: 0.95rem;
     line-height: 1.6;
   }
 
   .flow {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
+    display: flex;
     align-items: stretch;
+    gap: 0;
   }
   @media (max-width: 760px) {
-    .flow { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
   }
   .flow-step {
-    background: #fff;
+    flex: 1;
+    min-width: 0;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 16px;
     padding: 20px 16px;
@@ -136,6 +129,7 @@
     position: relative;
   }
   .flow-arrow {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,7 +165,7 @@
   }
   .flow-step p {
     font-size: 0.85rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     line-height: 1.5;
     margin: 0;
   }
@@ -182,7 +176,7 @@
     border-radius: 14px;
     padding: 14px 20px;
     font-size: 0.9rem;
-    color: var(--ink);
+    color: var(--text);
     text-align: center;
     line-height: 1.5;
   }
@@ -197,7 +191,7 @@
     .behind { grid-template-columns: 1fr; }
   }
   .behind-card {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 16px;
     padding: 20px;
@@ -212,7 +206,7 @@
   }
   .behind-card p {
     font-size: 0.88rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     line-height: 1.55;
     margin: 0;
   }
@@ -226,7 +220,7 @@
     .stats { grid-template-columns: 1fr; }
   }
   .stat {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 18px;
@@ -235,24 +229,36 @@
   .stat .value {
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--ink);
+    color: var(--text);
   }
   .stat .label {
     font-size: 0.8rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin-top: 6px;
     line-height: 1.4;
   }
 
   footer {
     text-align: center;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     font-size: 0.82rem;
     margin-top: 8px;
   }
 </style>
 </head>
 <body>
+
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-spheres">
+      <div class="bg-blob b1"></div>
+      <div class="bg-blob b2"></div>
+      <div class="bg-blob b3"></div>
+      <div class="bg-blob b4"></div>
+    </div>
+    <div class="bg-noise"></div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
   <div class="top">
     <a class="back" href="../index.html">&larr; Πίσω στην πύλη</a>
     <span class="badge">B</span>
@@ -260,7 +266,7 @@
   <main>
     <div class="hero">
       <img src="logo.svg" alt="Remerge logo">
-      <h1>Remerge</h1>
+      <h1 class="gradient-text">Remerge</h1>
     </div>
     <p class="subtitle">Ένας ψηφιακός δίδυμος για την καρδιά σου</p>
     <p class="lede">Δοκιμάζουμε θεραπείες πρώτα σε ένα εικονικό αντίγραφο του ασθενή — όχι στον ίδιο.</p>
@@ -336,5 +342,7 @@
 
     <footer>REMERGE · Horizon Europe MSCA Staff Exchanges · Συντονισμός: Χαροκόπειο Πανεπιστήμιο</footer>
   </main>
+
+  <script src="../assets/theme.js" defer></script>
 </body>
 </html>

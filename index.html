@@ -4,128 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Βραδιά του Ερευνητή — Research Projects</title>
+<link rel="stylesheet" href="assets/theme.css">
 <style>
   :root {
-    --cream: #F7F1E6;
-    --cream-deep: #EFE6D6;
-    --ink: #3B332A;
-    --ink-soft: #6B5F4F;
-    --line: rgba(59, 51, 42, 0.14);
-    --card-mosaic: #E4C9B6;
-    --card-remerge: #C9D3C1;
-    --card-codrones: #C3CBD6;
-    --card-archipelago: #E3D3A6;
-  }
-
-  * { box-sizing: border-box; }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+    --card-mosaic: #E8916B;
+    --card-remerge: #3FC7B4;
+    --card-codrones: #7B9FE0;
+    --card-archipelago: #E0A855;
   }
 
   body {
-    position: relative;
-    isolation: isolate;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 32px 20px 64px;
-    overflow-x: hidden;
   }
 
-  /* Ambient animated background: flowing gradient wash + drifting color spheres */
-  .bg-scene {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    overflow: hidden;
-    pointer-events: none;
-    background: var(--cream);
-  }
-
-  .bg-wash {
-    position: absolute;
-    inset: -20%;
-    background: linear-gradient(
-      120deg,
-      #F7F1E6 0%,
-      #F3D8C4 18%,
-      #EFC9C9 34%,
-      #D9C9E8 50%,
-      #C9DDE0 66%,
-      #F0DFAE 84%,
-      #F7F1E6 100%
-    );
-    background-size: 340% 340%;
-    opacity: 0.85;
-  }
-
-  .bg-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.55;
-    mix-blend-mode: multiply;
-    will-change: transform;
-  }
-
-  .bg-blob.b1 { width: 620px; height: 620px; top: -180px; left: -160px; background: #E8916B; }
-  .bg-blob.b2 { width: 560px; height: 560px; top: 0%; right: -180px; background: #4FA8A0; }
-  .bg-blob.b3 { width: 560px; height: 560px; bottom: -200px; left: 8%; background: #E2B04A; }
-  .bg-blob.b4 { width: 460px; height: 460px; bottom: -140px; right: 6%; background: #B98EC4; }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .bg-wash { animation: waveShift 26s ease-in-out infinite; }
-    .bg-blob.b1 { animation: drift1 34s ease-in-out infinite; }
-    .bg-blob.b2 { animation: drift2 40s ease-in-out infinite; }
-    .bg-blob.b3 { animation: drift3 37s ease-in-out infinite; }
-    .bg-blob.b4 { animation: drift1 30s ease-in-out infinite reverse; }
-  }
-
-  @keyframes waveShift {
-    0%   { background-position: 0% 30%; }
-    50%  { background-position: 100% 70%; }
-    100% { background-position: 0% 30%; }
-  }
-  @keyframes drift1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(80px, 60px) scale(1.12); }
-  }
-  @keyframes drift2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-70px, 80px) scale(1.15); }
-  }
-  @keyframes drift3 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(60px, -60px) scale(1.1); }
-  }
-
-  .cursor-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 560px;
-    height: 560px;
-    margin-left: -280px;
-    margin-top: -280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%);
-    mix-blend-mode: soft-light;
-    pointer-events: none;
-    z-index: -1;
-    transform: translate(var(--mx, 50vw), var(--my, 40vh));
-    transition: transform 0.18s ease-out;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cursor-glow { display: none; }
-  }
-
+  /* ---------- Header ---------- */
   header {
     width: 100%;
     max-width: 1080px;
@@ -145,9 +41,13 @@
     object-fit: contain;
   }
 
-  .logo-hua { height: 64px; }
-  .logo-vradia { height: 94px; }
-  .logo-icsa { height: 64px; }
+  .logo-hua { height: 46px; }
+  .logo-icsa { height: 46px; }
+  .logo-vradia {
+    height: 94px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  }
 
   .logos > a:first-child { order: 1; }
   .logos > a:nth-child(2) { order: 2; margin: 0 auto; }
@@ -169,16 +69,15 @@
   }
 
   .intro h1 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 700;
     letter-spacing: 0.01em;
-    margin: 0 0 8px;
-    color: var(--ink);
+    margin: 0 0 10px;
   }
 
   .intro p {
     margin: 0;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     font-size: 0.98rem;
   }
 
@@ -196,9 +95,10 @@
   @media (max-width: 680px) {
     .grid { grid-template-columns: 1fr; }
     .logo-vradia { height: 76px; }
-    .logo-hua, .logo-icsa { height: 50px; }
+    .logo-hua, .logo-icsa { height: 38px; }
   }
 
+  /* ---------- Cards ---------- */
   .card {
     position: relative;
     display: block;
@@ -207,28 +107,49 @@
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    background-color: var(--card-color);
-    background-image: var(--card-image, none), linear-gradient(var(--card-color), var(--card-color));
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 2px 6px rgba(59, 51, 42, 0.08), 0 10px 24px rgba(59, 51, 42, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 14px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
   .card:hover, .card:focus-visible {
     transform: translateY(-4px);
-    box-shadow: 0 6px 14px rgba(59, 51, 42, 0.12), 0 18px 32px rgba(59, 51, 42, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 22px 44px rgba(0, 0, 0, 0.5);
   }
 
   .card:focus-visible {
-    outline: 3px solid var(--ink);
+    outline: 2px solid var(--text);
     outline-offset: 3px;
+  }
+
+  .card-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: -80px;
+    bottom: -90px;
+    border-radius: 50%;
+    background: var(--card-color);
+    filter: blur(70px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .card-cover {
+    position: absolute;
+    inset: 0;
+    background-image: var(--card-image, none);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
   }
 
   .card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%);
+    background: linear-gradient(180deg, rgba(6, 7, 10, 0) 30%, rgba(6, 7, 10, 0.88) 100%);
   }
 
   .card-badge {
@@ -238,8 +159,8 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.85);
-    color: var(--ink);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--bg);
     font-weight: 700;
     font-size: 0.9rem;
     display: flex;
@@ -253,7 +174,6 @@
     right: 22px;
     bottom: 20px;
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
   }
 
   .card-text h2 {
@@ -265,7 +185,7 @@
   .card-text span {
     font-size: 0.85rem;
     font-weight: 500;
-    opacity: 0.92;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .card-logo {
@@ -275,47 +195,49 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     border-radius: 12px;
-    padding: 6px 8px;
-    box-shadow: 0 1px 4px rgba(59, 51, 42, 0.15);
+    padding: 8px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
 
   .card-logo img {
     display: block;
-    height: 24px;
+    height: 37px;
     width: auto;
-    max-width: 56px;
+    max-width: 88px;
     object-fit: contain;
   }
 
   .card-logo .divider {
     width: 1px;
-    height: 18px;
-    background: var(--line);
+    height: 28px;
+    background: rgba(59, 51, 42, 0.18);
   }
 </style>
 </head>
 <body>
 
   <div class="bg-scene" aria-hidden="true">
-    <div class="bg-wash"></div>
-    <div class="bg-blob b1"></div>
-    <div class="bg-blob b2"></div>
-    <div class="bg-blob b3"></div>
-    <div class="bg-blob b4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-spheres">
+      <div class="bg-blob b1"></div>
+      <div class="bg-blob b2"></div>
+      <div class="bg-blob b3"></div>
+      <div class="bg-blob b4"></div>
+    </div>
+    <div class="bg-noise"></div>
   </div>
-  <div class="cursor-glow" aria-hidden="true"></div>
-
+  <canvas id="particles" aria-hidden="true"></canvas>
   <header>
     <div class="logos">
-      <a href="https://www.hua.gr/" target="_blank" rel="noopener">
+      <a class="logo-chip" href="https://www.hua.gr/" target="_blank" rel="noopener">
         <img class="logo-hua" src="HUA_Logo.png" alt="Harokopio University of Athens logo">
       </a>
       <a href="#">
         <img class="logo-vradia" src="vradia_logo_stamp.png" alt="Βραδιά του Ερευνητή logo">
       </a>
-      <a href="#">
+      <a class="logo-chip" href="#">
         <img class="logo-icsa" src="icsa-logo.png" alt="ICSA logo">
       </a>
     </div>
@@ -324,7 +246,7 @@
   <hr>
 
   <div class="intro">
-    <h1>Research Projects</h1>
+    <h1 class="gradient-text">Research Projects</h1>
     <p>Explore our work — select a project below.</p>
   </div>
 
@@ -332,6 +254,8 @@
     <div class="grid">
 
       <a class="card" style="--card-color: var(--card-mosaic); --card-image: url('Mosaic/cover.jpg');" href="Mosaic/index.html">
+        <div class="card-glow"></div>
+        <div class="card-cover"></div>
         <div class="card-overlay"></div>
         <div class="card-badge">A</div>
         <div class="card-logo"><img src="Mosaic/logo.png" alt="Mosaic logo"></div>
@@ -342,6 +266,8 @@
       </a>
 
       <a class="card" style="--card-color: var(--card-remerge); --card-image: url('Remerge/cover.jpg');" href="Remerge/index.html">
+        <div class="card-glow"></div>
+        <div class="card-cover"></div>
         <div class="card-overlay"></div>
         <div class="card-badge">B</div>
         <div class="card-logo"><img src="Remerge/logo.svg" alt="Remerge logo"></div>
@@ -352,6 +278,8 @@
       </a>
 
       <a class="card" style="--card-color: var(--card-codrones); --card-image: url('Codrones/cover.jpg');" href="Codrones/index.html">
+        <div class="card-glow"></div>
+        <div class="card-cover"></div>
         <div class="card-overlay"></div>
         <div class="card-badge">C</div>
         <div class="card-logo"><img src="Codrones/logo.png" alt="CoDrones logo"></div>
@@ -362,6 +290,8 @@
       </a>
 
       <a class="card" style="--card-color: var(--card-archipelago); --card-image: url('Archipelago/cover.jpg');" href="Archipelago/index.html">
+        <div class="card-glow"></div>
+        <div class="card-cover"></div>
         <div class="card-overlay"></div>
         <div class="card-badge">D</div>
         <div class="card-logo">
@@ -378,15 +308,6 @@
     </div>
   </main>
 
-  <script>
-    (function () {
-      var glow = document.querySelector('.cursor-glow');
-      if (!glow || !window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
-      window.addEventListener('pointermove', function (e) {
-        glow.style.setProperty('--mx', e.clientX + 'px');
-        glow.style.setProperty('--my', e.clientY + 'px');
-      }, { passive: true });
-    })();
-  </script>
+  <script src="assets/theme.js" defer></script>
 </body>
 </html>

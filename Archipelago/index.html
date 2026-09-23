@@ -4,21 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Archipelago + K2W — Βραδιά του Ερευνητή</title>
+<link rel="stylesheet" href="../assets/theme.css">
 <style>
   :root {
-    --cream: #F7F1E6;
-    --ink: #3B332A;
-    --ink-soft: #6B5F4F;
-    --line: rgba(59, 51, 42, 0.14);
-    --accent: #A6763A;
-    --accent-soft: #EFE0C4;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+    --accent: #E0A855;
+    --accent-soft: rgba(224, 168, 85, 0.16);
   }
   body {
     min-height: 100vh;
@@ -36,12 +26,12 @@
     margin-bottom: 24px;
   }
   .back {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
   }
-  .back:hover { color: var(--ink); }
+  .back:hover { color: var(--text); }
   .badge {
     display: inline-block;
     background: var(--accent-soft);
@@ -61,14 +51,14 @@
     font-weight: 700;
   }
   .subtitle {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin: 0 0 6px;
     font-size: 1.05rem;
     font-style: italic;
     line-height: 1.5;
   }
   .lede {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin: 0 0 24px;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -95,13 +85,13 @@
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: var(--ink);
-    color: var(--cream);
+    background: var(--accent);
+    color: var(--bg);
     font-size: 0.8rem;
     font-weight: 700;
   }
   section > p.desc {
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin: 0 0 20px;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -117,7 +107,7 @@
     .platforms { grid-template-columns: 1fr; }
   }
   .platform-card {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 18px;
     padding: 22px;
@@ -145,19 +135,19 @@
   }
   .platform-card .flow-label {
     font-size: 0.82rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin-bottom: 10px;
   }
   .platform-card p.blurb {
     font-size: 0.88rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     line-height: 1.55;
     margin: 0 0 10px;
   }
   .platform-card .question {
     font-size: 0.88rem;
     font-style: italic;
-    color: var(--ink);
+    color: var(--text);
     background: var(--accent-soft);
     border-radius: 10px;
     padding: 10px 12px;
@@ -175,8 +165,8 @@
     width: fit-content;
   }
   .status.live {
-    background: #FBEAE0;
-    color: #A34A22;
+    background: rgba(224, 168, 85, 0.18);
+    color: #F0C27A;
   }
   .status.dot {
     width: 7px; height: 7px; border-radius: 50%;
@@ -185,23 +175,23 @@
   }
   .status.pending {
     background: var(--line);
-    color: var(--ink-soft);
+    color: var(--text-soft);
   }
   .platform-card .launch {
     margin-top: 12px;
     display: inline-block;
-    background: var(--ink);
-    color: #fff;
+    background: var(--accent);
+    color: #0A0C10;
     text-decoration: none;
     padding: 10px 16px;
     border-radius: 999px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
   }
   .platform-card .launch-note {
     font-size: 0.75rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin-top: 8px;
     line-height: 1.4;
   }
@@ -219,7 +209,7 @@
     .gap .sign { transform: rotate(90deg); }
   }
   .gap-box {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 16px;
     padding: 16px 18px;
@@ -235,35 +225,37 @@
   }
   .gap-box .content {
     font-size: 0.88rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     line-height: 1.5;
   }
   .gap .sign {
     text-align: center;
     font-size: 1.4rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     font-weight: 700;
   }
 
   /* HyDE flow */
   .flow {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    display: flex;
     align-items: stretch;
+    gap: 0;
     margin-bottom: 18px;
   }
   @media (max-width: 700px) {
-    .flow { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
   }
   .flow-step {
-    background: #fff;
+    flex: 1;
+    min-width: 0;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 16px;
     padding: 20px 16px;
     text-align: center;
   }
   .flow-arrow {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -299,7 +291,7 @@
   }
   .flow-step p {
     font-size: 0.85rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     line-height: 1.5;
     margin: 0;
   }
@@ -309,7 +301,7 @@
     border-radius: 14px;
     padding: 14px 20px;
     font-size: 0.9rem;
-    color: var(--ink);
+    color: var(--text);
     text-align: center;
     line-height: 1.5;
     margin-bottom: 28px;
@@ -324,7 +316,7 @@
     .questions { grid-template-columns: 1fr; }
   }
   .qcard {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 16px 18px;
@@ -336,13 +328,13 @@
   .qcard p {
     margin: 0;
     font-size: 0.82rem;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     line-height: 1.5;
   }
 
   footer {
     text-align: center;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     font-size: 0.82rem;
     margin-top: 8px;
     line-height: 1.6;
@@ -350,12 +342,24 @@
 </style>
 </head>
 <body>
+
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-spheres">
+      <div class="bg-blob b1"></div>
+      <div class="bg-blob b2"></div>
+      <div class="bg-blob b3"></div>
+      <div class="bg-blob b4"></div>
+    </div>
+    <div class="bg-noise"></div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
   <div class="top">
     <a class="back" href="../index.html">&larr; Πίσω στην πύλη</a>
     <span class="badge">D</span>
   </div>
   <main>
-    <h1>Archipelago + K2W</h1>
+    <h1 class="gradient-text">Archipelago + K2W</h1>
     <p class="subtitle">Δύο έργα · Ένα ερευνητικό ερώτημα</p>
     <p class="lede">Η σωστή ευκαιρία για τον σωστό άνθρωπο.</p>
     <hr>
@@ -460,5 +464,7 @@
       ICSA · ΧΠΑ · εργασία σε εξέλιξη
     </footer>
   </main>
+
+  <script src="../assets/theme.js" defer></script>
 </body>
 </html>
