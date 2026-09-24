@@ -61,35 +61,153 @@
     margin: 0 0 40px;
   }
 
-  .intro {
-    width: 100%;
-    max-width: 1080px;
-    text-align: center;
-    margin-bottom: 36px;
-  }
-
-  .intro h1 {
-    font-size: 1.7rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    margin: 0 0 10px;
-  }
-
-  .intro p {
-    margin: 0;
-    color: var(--text-soft);
-    font-size: 0.98rem;
-  }
-
   main {
     width: 100%;
     max-width: 1080px;
+  }
+
+  /* ---------- Tabs ---------- */
+  @property --tab-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @keyframes tab-border-spin {
+    to { --tab-angle: 360deg; }
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 1080px;
+    padding: 28px 0 32px;
+  }
+
+  .tab-btn {
+    position: relative;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 15px 34px;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+  }
+
+  .tab-btn .tab-label {
+    background: linear-gradient(90deg, var(--sphere-1), var(--sphere-2) 50%, var(--sphere-3) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.5;
+    transition: opacity 0.25s ease;
+  }
+
+  .tab-btn:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .tab-btn:hover .tab-label {
+    opacity: 0.8;
+  }
+
+  .tab-btn.active {
+    background: var(--surface-strong);
+    border-color: transparent;
+  }
+
+  .tab-btn.active .tab-label {
+    opacity: 1;
+  }
+
+  /* Neon perimeter animation on the selected tab, in the theme's sphere colors */
+  .tab-btn.active::before,
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from var(--tab-angle), var(--sphere-1), var(--sphere-2), var(--sphere-3), var(--sphere-4), var(--sphere-1));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: tab-border-spin 3s linear infinite;
+    pointer-events: none;
+  }
+
+  .tab-btn.active::before {
+    filter: blur(6px);
+    opacity: 0.8;
+  }
+
+  .panel[hidden] {
+    display: none;
   }
 
   .grid {
     display: flex;
     flex-direction: column;
     gap: 22px;
+  }
+
+  /* ---------- Assets placeholder grid ---------- */
+  .assets-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+  }
+
+  .asset-card {
+    flex: 1 1 300px;
+    max-width: 320px;
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: 22px;
+    color: var(--text-soft);
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+
+  .asset-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--surface-strong);
+  }
+
+  .asset-card .asset-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .asset-card .asset-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .asset-card .asset-sub {
+    font-size: 0.8rem;
   }
 
   /* ---------- Cards ---------- */
@@ -311,13 +429,13 @@
 
   <hr>
 
-  <div class="intro">
-    <h1 class="gradient-text">Research Projects</h1>
-    <p>Explore our work — select a project below.</p>
-  </div>
+  <nav class="tabs">
+    <button type="button" class="tab-btn active" data-tab="projects"><span class="tab-label">Research Projects</span></button>
+    <button type="button" class="tab-btn" data-tab="assets"><span class="tab-label">Assets</span></button>
+  </nav>
 
   <main>
-    <div class="grid">
+    <div class="grid panel" id="panel-projects">
 
       <a class="card" style="--card-color: var(--card-mosaic);" href="Mosaic/index.html">
         <div class="card-visual">
@@ -398,8 +516,50 @@
       </a>
 
     </div>
+
+    <div class="assets-grid panel" id="panel-assets" hidden>
+      <div class="asset-card">
+        <div class="asset-icon">1</div>
+        <div class="asset-label">Coming soon</div>
+        <div class="asset-sub">Asset placeholder</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon">2</div>
+        <div class="asset-label">Coming soon</div>
+        <div class="asset-sub">Asset placeholder</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon">3</div>
+        <div class="asset-label">Coming soon</div>
+        <div class="asset-sub">Asset placeholder</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon">4</div>
+        <div class="asset-label">Coming soon</div>
+        <div class="asset-sub">Asset placeholder</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon">5</div>
+        <div class="asset-label">Coming soon</div>
+        <div class="asset-sub">Asset placeholder</div>
+      </div>
+    </div>
   </main>
 
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.tab-btn');
+      var panels = { projects: document.getElementById('panel-projects'), assets: document.getElementById('panel-assets') };
+
+      tabs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.getAttribute('data-tab');
+          tabs.forEach(function (b) { b.classList.toggle('active', b === btn); });
+          Object.keys(panels).forEach(function (key) { panels[key].hidden = key !== target; });
+        });
+      });
+    })();
+  </script>
   <script src="assets/theme.js" defer></script>
 </body>
 </html>
