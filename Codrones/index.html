@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -239,80 +239,80 @@
   </div>
   <canvas id="particles" aria-hidden="true"></canvas>
   <div class="top">
-    <a class="back" href="../index.html">&larr; Back to portal</a>
+    <a class="back" href="../index.html">&larr; Πίσω στην πύλη</a>
   </div>
   <main>
     <div class="title-row">
       <h1 class="gradient-text">CoDrones</h1>
       <div class="top-logo"><img src="logo.png" alt="CoDrones logo"></div>
     </div>
-    <p class="subtitle">A Knowledge Distillation Framework for Edge-Aware Optimization of Intelligent Data</p>
+    <p class="subtitle">Ένα πλαίσιο απόσταξης γνώσης για βελτιστοποίηση ευφυών δεδομένων στο edge</p>
     <hr>
 
     <section>
-      <h2><span class="num">1</span> Architecture</h2>
-      <p class="desc">An annotation-free, edge-aware teacher–student pipeline. A high-capacity foundation model (teacher) generates pixel-level segmentation masks from unlabeled images using text prompts — no manual labels required. These masks train a lightweight student model that runs entirely on RGB input, deployable on CPU-only edge hardware such as an onboard drone computer.</p>
+      <h2><span class="num">1</span> Αρχιτεκτονική</h2>
+      <p class="desc">Ένα σύστημα δασκάλου–μαθητή για συσκευές edge, χωρίς χειροκίνητη επισημείωση. Ένα μεγάλο foundation model (ο δάσκαλος) παράγει μάσκες κατάτμησης σε επίπεδο pixel από εικόνες χωρίς ετικέτες, με βάση περιγραφές κειμένου, χωρίς να χρειάζονται χειροκίνητες ετικέτες. Με αυτές τις μάσκες εκπαιδεύεται ένα ελαφρύ μοντέλο-μαθητής που δουλεύει μόνο με εικόνα RGB και μπορεί να τρέξει σε υλικό edge χωρίς GPU, όπως ο υπολογιστής πάνω σε ένα drone.</p>
       <figure class="figure">
-        <img src="architecture.png" alt="Teacher-student framework: text and image encoders produce intelligent data and masks, which become pseudo-labels used to train a lightweight student model producing the final output">
-        <figcaption>Overview of the proposed edge-aware teacher–student framework: unlabeled BoWFire / FLAME imagery and a text prompt are encoded, the foundation-model teacher generates masks as intelligent data, and the resulting pseudo-labels train a compact student model for on-device inference.</figcaption>
+        <img src="architecture.png" alt="Πλαίσιο δασκάλου–μαθητή: οι κωδικοποιητές κειμένου και εικόνας παράγουν ευφυή δεδομένα και μάσκες, που γίνονται ψευδο-ετικέτες για την εκπαίδευση ενός ελαφριού μοντέλου-μαθητή">
+        <figcaption>Επισκόπηση του προτεινόμενου πλαισίου δασκάλου–μαθητή: εικόνες χωρίς ετικέτες από τα BoWFire / FLAME και μια περιγραφή κειμένου κωδικοποιούνται, ο δάσκαλος (foundation model) παράγει μάσκες ως ευφυή δεδομένα, και οι ψευδο-ετικέτες που προκύπτουν εκπαιδεύουν ένα μικρό μοντέλο-μαθητή για inference πάνω στη συσκευή.</figcaption>
       </figure>
 
       <table class="compare">
-        <caption>Candidate teacher models considered for text-conditioned mask generation. SAM3 was selected for its native concept-level text prompting and strongest zero-shot, instance-level segmentation.</caption>
+        <caption>Υποψήφια μοντέλα-δάσκαλοι για παραγωγή μασκών από κείμενο. Επιλέχθηκε το SAM3 επειδή υποστηρίζει εγγενώς περιγραφές σε επίπεδο έννοιας και έχει την καλύτερη zero-shot κατάτμηση σε επίπεδο αντικειμένου.</caption>
         <thead>
-          <tr><th>Model</th><th>Prompt type</th><th>Zero-shot</th><th>Video</th></tr>
+          <tr><th>Μοντέλο</th><th>Είδος prompt</th><th>Zero-shot</th><th>Βίντεο</th></tr>
         </thead>
         <tbody>
-          <tr><td>CLIPSeg</td><td>Text</td><td>Yes</td><td>No</td></tr>
-          <tr><td>SAM (original)</td><td>Points / boxes / masks</td><td>Yes</td><td>No</td></tr>
-          <tr><td>Grounded-SAM</td><td>Text + boxes / points</td><td>Yes</td><td>No</td></tr>
-          <tr><td>SAM2</td><td>Multimodal</td><td>Yes</td><td>Yes</td></tr>
-          <tr class="selected"><td>SAM3 (used)</td><td>Concept-level (text / image)</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>CLIPSeg</td><td>Κείμενο</td><td>Ναι</td><td>Όχι</td></tr>
+          <tr><td>SAM (αρχικό)</td><td>Σημεία / πλαίσια / μάσκες</td><td>Ναι</td><td>Όχι</td></tr>
+          <tr><td>Grounded-SAM</td><td>Κείμενο + πλαίσια / σημεία</td><td>Ναι</td><td>Όχι</td></tr>
+          <tr><td>SAM2</td><td>Πολυτροπικό</td><td>Ναι</td><td>Ναι</td></tr>
+          <tr class="selected"><td>SAM3 (επιλέχθηκε)</td><td>Σε επίπεδο έννοιας (κείμενο / εικόνα)</td><td>Ναι</td><td>Ναι</td></tr>
         </tbody>
       </table>
-      <p class="desc" style="margin-top: 14px;">Student: DeepLabV3 with a MobileNet backbone, trained exclusively on SAM3-generated pseudo-labels for the BoWFire + FLAME fire-segmentation task.</p>
+      <p class="desc" style="margin-top: 14px;">Μαθητής: DeepLabV3 με backbone MobileNet, εκπαιδευμένο αποκλειστικά σε ψευδο-ετικέτες από το SAM3 για την κατάτμηση φωτιάς στα BoWFire + FLAME.</p>
     </section>
 
     <section>
-      <h2><span class="num">2</span> Examples</h2>
-      <p class="desc">Evaluated on a fire-segmentation case study, combining urban/indoor (BoWFire) and wildfire (FLAME) footage, with zero manual annotations used at any point in training.</p>
+      <h2><span class="num">2</span> Παραδείγματα</h2>
+      <p class="desc">Αξιολογήθηκε σε μελέτη περίπτωσης κατάτμησης φωτιάς, με εικόνες από αστικούς/εσωτερικούς χώρους (BoWFire) και δασικές πυρκαγιές (FLAME), χωρίς καμία χειροκίνητη επισημείωση σε κανένα στάδιο της εκπαίδευσης.</p>
       <div class="example-grid">
         <figure class="figure">
-          <img src="qualitative.png" alt="RGB input, teacher-generated mask, and student prediction overlay for a wildfire scene">
-          <figcaption>RGB input, teacher pseudo-label (SAM3), and the student model's prediction overlay — the compact student reproduces the teacher's semantic decisions despite never seeing a manual annotation.</figcaption>
+          <img src="qualitative.png" alt="Είσοδος RGB, μάσκα από το μοντέλο-δάσκαλο και πρόβλεψη του μοντέλου-μαθητή σε σκηνή δασικής πυρκαγιάς">
+          <figcaption>Είσοδος RGB, ψευδο-ετικέτα του δασκάλου (SAM3) και η πρόβλεψη του μοντέλου-μαθητή. Ο μικρός μαθητής αναπαράγει τις αποφάσεις του δασκάλου, χωρίς να έχει δει ποτέ χειροκίνητη επισημείωση.</figcaption>
         </figure>
         <figure class="figure">
-          <img src="confusion.png" alt="Teacher-student confusion matrix for fire presence, showing 99.2% agreement and zero false negatives">
-          <figcaption>Image-level agreement between teacher and student: 99.2% overall agreement, with zero false negatives — the student never misses a fire the teacher detected.</figcaption>
+          <img src="confusion.png" alt="Πίνακας σύγχυσης δασκάλου–μαθητή για την παρουσία φωτιάς, με 99,2% συμφωνία και μηδέν ψευδώς αρνητικά">
+          <figcaption>Συμφωνία δασκάλου και μαθητή ανά εικόνα: 99,2% συνολικά, με μηδέν ψευδώς αρνητικά. Ο μαθητής δεν χάνει ποτέ φωτιά που εντόπισε ο δάσκαλος.</figcaption>
         </figure>
       </div>
       <div class="stats">
         <div class="stat">
-          <div class="value">0.685</div>
-          <div class="label">Teacher–Student Dice score</div>
+          <div class="value">0,685</div>
+          <div class="label">Dice score δασκάλου–μαθητή</div>
         </div>
         <div class="stat">
-          <div class="value">0.747</div>
-          <div class="label">flip-consistency IoU (prediction stability)</div>
+          <div class="value">0,747</div>
+          <div class="label">IoU συνέπειας σε αναστροφή (σταθερότητα πρόβλεψης)</div>
         </div>
         <div class="stat">
-          <div class="value">8.13 FPS</div>
-          <div class="label">CPU-only inference, 123 ms/frame</div>
+          <div class="value">8,13 FPS</div>
+          <div class="label">inference μόνο σε CPU, 123 ms/καρέ</div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2><span class="num">3</span> Video</h2>
-      <p class="desc">A short walkthrough of the system running on real footage.</p>
+      <h2><span class="num">3</span> Βίντεο</h2>
+      <p class="desc">Μια σύντομη παρουσίαση του συστήματος σε λειτουργία, πάνω σε πραγματικό βίντεο.</p>
       <video controls preload="metadata" poster="demo.png">
         <source src="fire_segmentation.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+        Ο browser σας δεν υποστηρίζει αναπαραγωγή βίντεο.
       </video>
     </section>
 
     <div class="links">
-      <a href="A_Knowledge_Distillation_Framework_for_Edge-Aware_Optimization_of_Intelligent_Data.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+      <a href="A_Knowledge_Distillation_Framework_for_Edge-Aware_Optimization_of_Intelligent_Data.pdf" target="_blank" rel="noopener">Διαβάστε τη δημοσίευση (PDF)</a>
     </div>
   </main>
 

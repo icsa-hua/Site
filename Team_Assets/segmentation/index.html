@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live Fire Segmentation — Βραδιά του Ερευνητή</title>
+<title>Real-Time Image Segmentation — Βραδιά του Ερευνητή</title>
 <link rel="stylesheet" href="../../assets/theme.css">
 <style>
   :root {
@@ -188,57 +188,58 @@
   </div>
   <canvas id="particles" aria-hidden="true"></canvas>
   <div class="top">
-    <a class="back" href="../../index.html#assets">&larr; Back to portal</a>
+    <a class="back" href="../../index.html#assets">&larr; Πίσω στην πύλη</a>
     <span class="badge">4</span>
   </div>
   <main>
-    <h1 class="gradient-text">Live Fire Segmentation</h1>
-    <p class="subtitle">A real drone, a Jetson, and a live view of the CoDrones student model thinking in real time.</p>
+    <h1 class="gradient-text">Real-Time Image Segmentation</h1>
+    <p class="subtitle">Ένα πραγματικό drone, ένα Jetson και μια ζωντανή ματιά στο μοντέλο-μαθητή του CoDrones καθώς «σκέφτεται» σε πραγματικό χρόνο.</p>
     <hr>
 
     <section>
-      <h2><span class="num">1</span> About</h2>
-      <p class="desc">A live-inference companion to the <a href="../../Codrones/index.html">CoDrones research project</a>: a real drone's camera feed streams to an onboard Jetson, which runs the same lightweight teacher-student fire-segmentation model, CPU-only, and streams the inference back live. There's no pre-recorded footage here — visitors watch the actual model reason about whatever the drone is pointed at, in real time.</p>
+      <h2><span class="num">1</span> Σχετικά</h2>
+      <p class="desc">Ζωντανή επίδειξη του <a href="../../Codrones/index.html">ερευνητικού έργου CoDrones</a>: η κάμερα ενός πραγματικού drone στέλνει εικόνα σε ένα Jetson πάνω στο drone, που τρέχει το ίδιο ελαφρύ μοντέλο-μαθητή κατάτμησης φωτιάς στο edge, δηλαδή απευθείας στο Jetson, έναν τελικό κόμβο με περιορισμένη υπολογιστική ισχύ, και στέλνει ζωντανά πίσω το αποτέλεσμα. Δεν υπάρχει προηχογραφημένο υλικό: οι επισκέπτες βλέπουν το πραγματικό μοντέλο να αναλύει σε πραγματικό χρόνο ό,τι βλέπει το drone.</p>
       <div class="stats">
         <div class="stat">
-          <div class="value">0.685</div>
-          <div class="label">Teacher–Student Dice score</div>
+          <div class="value">0,685</div>
+          <div class="label">Dice score δασκάλου–μαθητή</div>
         </div>
         <div class="stat">
-          <div class="value">0.747</div>
-          <div class="label">flip-consistency IoU (prediction stability)</div>
+          <div class="value">0,747</div>
+          <div class="label">IoU συνέπειας σε αναστροφή (σταθερότητα πρόβλεψης)</div>
         </div>
         <div class="stat">
-          <div class="value">8.13 FPS</div>
-          <div class="label">CPU-only inference, 123 ms/frame</div>
+          <div class="value">8,13 FPS</div>
+          <div class="label">inference μόνο σε CPU, 123 ms/καρέ</div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2><span class="num">2</span> From the paper</h2>
-      <p class="desc">The same annotation-free teacher-student pipeline powers this live stream — trained without a single manually-labeled frame.</p>
+      <h2><span class="num">2</span> Από τη δημοσίευση</h2>
+      <p class="desc">Η ίδια διαδικασία δασκάλου–μαθητή χωρίς χειροκίνητη επισημείωση τροφοδοτεί αυτή τη ζωντανή μετάδοση. Εκπαιδεύτηκε χωρίς ούτε ένα καρέ με χειροκίνητη ετικέτα.</p>
       <div class="example-grid">
         <figure class="figure">
-          <img src="qualitative.png" alt="RGB input, teacher-generated mask, and student prediction overlay for a wildfire scene">
-          <figcaption>RGB input, teacher pseudo-label, and the student model's prediction overlay.</figcaption>
+          <img src="qualitative.png" alt="Είσοδος RGB, μάσκα από το μοντέλο-δάσκαλο και πρόβλεψη του μοντέλου-μαθητή σε σκηνή δασικής πυρκαγιάς">
+          <figcaption>Είσοδος RGB, ψευδο-ετικέτα του δασκάλου και η πρόβλεψη του μοντέλου-μαθητή.</figcaption>
         </figure>
         <figure class="figure">
-          <img src="confusion.png" alt="Teacher-student confusion matrix for fire presence, showing 99.2% agreement and zero false negatives">
-          <figcaption>Teacher–student agreement: 99.2%, with zero false negatives.</figcaption>
+          <img src="confusion.png" alt="Πίνακας σύγχυσης δασκάλου–μαθητή για την παρουσία φωτιάς, με 99,2% συμφωνία και μηδέν ψευδώς αρνητικά">
+          <figcaption>Συμφωνία δασκάλου–μαθητή: 99,2%, με μηδέν ψευδώς αρνητικά.</figcaption>
         </figure>
       </div>
     </section>
 
     <section>
-      <h2><span class="num">3</span> Watch live</h2>
+      <h2><span class="num">3</span> Δες ζωντανά</h2>
       <div class="launch">
-        <a href="http://192.168.55.1" target="_blank" rel="noopener">Open Live Stream →</a>
-        <p>Opens the live camera + inference feed in a new tab.</p>
+        <a href="http://192.168.55.1" data-what="τη ζωντανή μετάδοση" target="_blank" rel="noopener">Άνοιξε τη ζωντανή μετάδοση →</a>
+        <p>Ανοίγει τη ζωντανή εικόνα της κάμερας με το inference σε νέα καρτέλα.</p>
       </div>
     </section>
   </main>
 
   <script src="../../assets/theme.js" defer></script>
+  <script src="../../assets/launch.js" defer></script>
 </body>
 </html>

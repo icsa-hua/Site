@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -207,65 +207,65 @@
   </div>
   <canvas id="particles" aria-hidden="true"></canvas>
   <div class="top">
-    <a class="back" href="../index.html">&larr; Back to portal</a>
+    <a class="back" href="../index.html">&larr; Πίσω στην πύλη</a>
   </div>
   <main>
     <div class="title-row">
       <h1 class="gradient-text">Mosaic</h1>
       <div class="top-logo"><img src="logo.png" alt="Mosaic logo"></div>
     </div>
-    <p class="subtitle">Real-Time Interpretable Monocular Motion Forecasting and Reactive Navigation for Autonomous Surface Vehicles</p>
+    <p class="subtitle">Ερμηνεύσιμη πρόβλεψη κίνησης σε πραγματικό χρόνο με μία κάμερα και αντιδραστική πλοήγηση για αυτόνομα σκάφη επιφανείας</p>
     <hr>
 
     <section>
-      <h2><span class="num">1</span> Architecture</h2>
-      <p class="desc">A complete, real-time (70 FPS), GPS-free monocular pipeline: a forward-facing camera feeds dense optical flow and ego-motion estimation, which drives a Kalman-filtered short-horizon forecast, a residual-flow risk map, and finally a policy-and-safety layer that issues steering, throttle and a plain-language explanation — every stage in image space only, with no GPS, map, depth sensor or absolute scale.</p>
+      <h2><span class="num">1</span> Αρχιτεκτονική</h2>
+      <p class="desc">Ένα πλήρες σύστημα πραγματικού χρόνου (70 FPS) με μία μόνο κάμερα και χωρίς GPS: η εμπρόσθια κάμερα τροφοδοτεί την εκτίμηση πυκνής οπτικής ροής και ιδιοκίνησης, η οποία οδηγεί μια βραχυπρόθεσμη πρόβλεψη με φίλτρο Kalman, έναν χάρτη κινδύνου από την υπολειμματική ροή και τελικά ένα επίπεδο πολιτικής και ασφάλειας που δίνει εντολές πηδαλιουχίας, γκαζιού και μια εξήγηση σε απλή γλώσσα. Κάθε στάδιο λειτουργεί μόνο στον χώρο της εικόνας, χωρίς GPS, χάρτη, αισθητήρα βάθους ή απόλυτη κλίμακα.</p>
       <figure class="figure">
-        <img src="architecture.png" alt="Mosaic system architecture: RGB frame to dense flow and ego-motion, to Kalman forecast, to residual risk map, to policy and safety, output steer, throttle and explanation">
-        <figcaption>System overview. Everything left of the policy block operates purely in image space. Each stage emits an inspectable quantity, and the predicted heading is the common frame of reference shared by the risk map and the command.</figcaption>
+        <img src="architecture.png" alt="Αρχιτεκτονική του Mosaic: καρέ RGB → πυκνή ροή και ιδιοκίνηση → πρόβλεψη Kalman → χάρτης υπολειμματικού κινδύνου → πολιτική και ασφάλεια → πηδαλιουχία, γκάζι και εξήγηση">
+        <figcaption>Επισκόπηση του συστήματος. Ό,τι βρίσκεται αριστερά από το μπλοκ πολιτικής λειτουργεί αποκλειστικά στον χώρο της εικόνας. Κάθε στάδιο παράγει ένα μέγεθος που μπορεί να ελεγχθεί, και η προβλεπόμενη πορεία είναι το κοινό σύστημα αναφοράς για τον χάρτη κινδύνου και την εντολή.</figcaption>
       </figure>
     </section>
 
     <section>
-      <h2><span class="num">2</span> Examples</h2>
-      <p class="desc">Evaluated on real ASV footage against explicit bracketing baselines (zero-motion floor, constant velocity, hindsight oracle) rather than self-consistency alone. The forecast cuts endpoint error by 86% relative to the zero-motion floor and stays within 12.6–13.7% relative error across horizons.</p>
+      <h2><span class="num">2</span> Παραδείγματα</h2>
+      <p class="desc">Αξιολογήθηκε σε πραγματικό βίντεο από αυτόνομο σκάφος (ASV), με σύγκριση απέναντι σε σαφή σημεία αναφοράς (μηδενική κίνηση, σταθερή ταχύτητα, oracle εκ των υστέρων) και όχι μόνο με έλεγχο αυτοσυνέπειας. Η πρόβλεψη μειώνει το σφάλμα τελικού σημείου κατά 86% σε σχέση με το σενάριο μηδενικής κίνησης και διατηρεί σχετικό σφάλμα 12,6–13,7% σε όλους τους χρονικούς ορίζοντες.</p>
       <div class="example-grid">
         <figure class="figure">
-          <img src="results.png" alt="Forecast accuracy plots: error growth against baselines, and cumulative distribution of relative endpoint error">
-          <figcaption>Left: error growth against the bracketing baselines (log scale). Right: cumulative distribution of relative endpoint error — the median frame is accurate to roughly 11% at every horizon.</figcaption>
+          <img src="results.png" alt="Διαγράμματα ακρίβειας πρόβλεψης: αύξηση σφάλματος σε σχέση με τα σημεία αναφοράς και αθροιστική κατανομή του σχετικού σφάλματος τελικού σημείου">
+          <figcaption>Αριστερά: αύξηση του σφάλματος σε σχέση με τα σημεία αναφοράς (λογαριθμική κλίμακα). Δεξιά: αθροιστική κατανομή του σχετικού σφάλματος τελικού σημείου. Το διάμεσο καρέ έχει ακρίβεια περίπου 11% σε κάθε ορίζοντα.</figcaption>
         </figure>
         <figure class="figure">
-          <img src="demo.png" alt="Live instrument view on real footage showing the forecast envelope, residual-flow risk grid, and commanded action">
-          <figcaption>Live instrument view: the forecast envelope is drawn from the bow, the residual-flow grid and commanded detents are shown alongside a plain-language justification for every command.</figcaption>
+          <img src="demo.png" alt="Ζωντανή προβολή οργάνων σε πραγματικό βίντεο με τον φάκελο πρόβλεψης, το πλέγμα κινδύνου υπολειμματικής ροής και την εντολή που δόθηκε">
+          <figcaption>Ζωντανή προβολή οργάνων: ο φάκελος πρόβλεψης σχεδιάζεται από την πλώρη, και δίπλα εμφανίζονται το πλέγμα υπολειμματικής ροής και οι εντολές, μαζί με μια αιτιολόγηση σε απλή γλώσσα για κάθε εντολή.</figcaption>
         </figure>
       </div>
       <div class="stats">
         <div class="stat">
           <div class="value">70 FPS</div>
-          <div class="label">end-to-end, commodity CPU, no GPU</div>
+          <div class="label">από άκρη σε άκρη, σε κοινό CPU, χωρίς GPU</div>
         </div>
         <div class="stat">
           <div class="value">86%</div>
-          <div class="label">error reduction vs. zero-motion floor</div>
+          <div class="label">μείωση σφάλματος σε σχέση με μηδενική κίνηση</div>
         </div>
         <div class="stat">
-          <div class="value">13.1%</div>
-          <div class="label">relative displacement error at 1 s horizon</div>
+          <div class="value">13,1%</div>
+          <div class="label">σχετικό σφάλμα μετατόπισης σε ορίζοντα 1 s</div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2><span class="num">3</span> Video</h2>
-      <p class="desc">A short walkthrough of the system running on real footage.</p>
+      <h2><span class="num">3</span> Βίντεο</h2>
+      <p class="desc">Μια σύντομη παρουσίαση του συστήματος σε λειτουργία, πάνω σε πραγματικό βίντεο.</p>
       <video controls preload="metadata" poster="demo.png">
         <source src="video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+        Ο browser σας δεν υποστηρίζει αναπαραγωγή βίντεο.
       </video>
     </section>
 
     <div class="links">
-      <a href="main.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+      <a href="main.pdf" target="_blank" rel="noopener">Διαβάστε τη δημοσίευση (PDF)</a>
     </div>
   </main>
 

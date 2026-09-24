@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,51 +157,52 @@
   </div>
   <canvas id="particles" aria-hidden="true"></canvas>
   <div class="top">
-    <a class="back" href="../../index.html#assets">&larr; Back to portal</a>
+    <a class="back" href="../../index.html#assets">&larr; Πίσω στην πύλη</a>
     <span class="badge">1</span>
   </div>
   <main>
     <h1 class="gradient-text">GPT Game</h1>
-    <p class="subtitle">«Γίνε ChatGPT» — guess the next word and see what a real language model is thinking.</p>
+    <p class="subtitle">«Γίνε ChatGPT»: μάντεψε την επόμενη λέξη και δες τι «σκέφτεται» ένα πραγματικό γλωσσικό μοντέλο.</p>
     <hr>
 
     <section>
-      <h2><span class="num">1</span> About</h2>
-      <p class="desc">A hands-on demo of next-word prediction, aimed at showing different age groups how an LLM builds a sentence one token at a time. Visitors pick an age tier — Δημοτικό (7–12), Γυμνάσιο (12–15) or Λύκειο (15–18) — and the game adjusts accordingly: younger players pick the word a "robot" would say from a handful of options, while older players see full token probabilities, surprisal in bits, and a temperature slider that makes the model's choices more predictable or more chaotic. The goal is to make an abstract idea — how an LLM "thinks" about meaning — visible and playable at any age.</p>
+      <h2><span class="num">1</span> Σχετικά</h2>
+      <p class="desc">Μια διαδραστική επίδειξη πρόβλεψης της επόμενης λέξης, που δείχνει σε διαφορετικές ηλικίες πώς ένα LLM χτίζει μια πρόταση, ένα token τη φορά. Οι επισκέπτες διαλέγουν επίπεδο (Δημοτικό 7–12, Γυμνάσιο 12–15 ή Λύκειο 15–18) και το παιχνίδι προσαρμόζεται: οι μικρότεροι διαλέγουν ανάμεσα σε λίγες επιλογές τη λέξη που θα έλεγε ένα «ρομπότ», ενώ οι μεγαλύτεροι βλέπουν τις πιθανότητες των tokens, το surprisal σε bits και ένα ρυθμιστικό θερμοκρασίας που κάνει τις επιλογές του μοντέλου πιο προβλέψιμες ή πιο χαοτικές. Στόχος είναι μια αφηρημένη ιδέα, το πώς ένα LLM «σκέφτεται» το νόημα, να γίνει ορατή και να παιχτεί σε κάθε ηλικία.</p>
     </section>
 
     <section>
-      <h2><span class="num">2</span> Preview</h2>
-      <p class="desc">The three tiers, from picking a word out of a lineup to reading full next-token probability bars with a live temperature control.</p>
+      <h2><span class="num">2</span> Προεπισκόπηση</h2>
+      <p class="desc">Τα τρία επίπεδα: από την επιλογή μιας λέξης μέσα από λίγες επιλογές μέχρι τις μπάρες πιθανοτήτων για το επόμενο token με ζωντανό έλεγχο θερμοκρασίας.</p>
       <figure class="figure">
-        <img src="landing.png" alt="Γίνε ChatGPT landing screen with three age-tier choices: Δημοτικό, Γυμνάσιο and Λύκειο">
-        <figcaption>Landing screen — visitors choose their age tier before playing.</figcaption>
+        <img src="landing.png" alt="Αρχική οθόνη του Γίνε ChatGPT με τρία επίπεδα ηλικίας: Δημοτικό, Γυμνάσιο και Λύκειο">
+        <figcaption>Αρχική οθόνη: οι επισκέπτες διαλέγουν επίπεδο ηλικίας πριν παίξουν.</figcaption>
       </figure>
       <div class="tier-grid" style="margin-top: 16px;">
         <figure class="figure">
-          <img src="dimotiko.png" alt="Δημοτικό tier: pick the word a robot would say from a short list of options">
-          <figcaption>Δημοτικό (7–12) — pick the word from a short list, with a read-aloud button.</figcaption>
+          <img src="dimotiko.png" alt="Επίπεδο Δημοτικού: διάλεξε από μια σύντομη λίστα τη λέξη που θα έλεγε ένα ρομπότ">
+          <figcaption>Δημοτικό (7–12): διάλεξε τη λέξη από μια σύντομη λίστα, με κουμπί ανάγνωσης φωναχτά.</figcaption>
         </figure>
         <figure class="figure">
-          <img src="gymnasio.png" alt="Γυμνάσιο tier: probability bars for full sentence completion with a temperature slider">
-          <figcaption>Γυμνάσιο (12–15) — build full sentences, word by word.</figcaption>
+          <img src="gymnasio.png" alt="Επίπεδο Γυμνασίου: μπάρες πιθανοτήτων για τη συμπλήρωση ολόκληρης πρότασης με ρυθμιστικό θερμοκρασίας">
+          <figcaption>Γυμνάσιο (12–15): φτιάξε ολόκληρες προτάσεις, λέξη προς λέξη.</figcaption>
         </figure>
         <figure class="figure">
-          <img src="lykeio.png" alt="Λύκειο tier: token probabilities in percent with surprisal in bits and a temperature control">
-          <figcaption>Λύκειο (15–18) — token probabilities, surprisal in bits, and temperature.</figcaption>
+          <img src="lykeio.png" alt="Επίπεδο Λυκείου: πιθανότητες tokens σε ποσοστό, surprisal σε bits και έλεγχος θερμοκρασίας">
+          <figcaption>Λύκειο (15–18): πιθανότητες tokens, surprisal σε bits και θερμοκρασία.</figcaption>
         </figure>
       </div>
     </section>
 
     <section>
-      <h2><span class="num">3</span> Play</h2>
+      <h2><span class="num">3</span> Παίξε</h2>
       <div class="launch">
-        <a href="http://100.106.50.6:8081" target="_blank" rel="noopener">Play GPT Game →</a>
-        <p>Opens the interactive game in a new tab.</p>
+        <a href="http://100.106.50.6:8081" data-what="το παιχνίδι" target="_blank" rel="noopener">Παίξε το GPT Game →</a>
+        <p>Ανοίγει το διαδραστικό παιχνίδι σε νέα καρτέλα.</p>
       </div>
     </section>
   </main>
 
   <script src="../../assets/theme.js" defer></script>
+  <script src="../../assets/launch.js" defer></script>
 </body>
 </html>
