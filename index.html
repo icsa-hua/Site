@@ -158,7 +158,7 @@
     gap: 22px;
   }
 
-  /* ---------- Assets placeholder grid ---------- */
+  /* ---------- Assets grid ---------- */
   .assets-grid {
     display: flex;
     flex-wrap: wrap;
@@ -166,51 +166,105 @@
     gap: 22px;
   }
 
+  /* Same preview principle as the project cards: real screenshot fills the
+     tile, tinted with the asset's accent color. No logos yet, so the numbered
+     badge takes the logo's spot instead. */
   .asset-card {
+    position: relative;
     flex: 1 1 300px;
     max-width: 320px;
-    min-height: 170px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-align: center;
-    text-decoration: none;
-    background: var(--surface);
-    border: 1px solid var(--line);
+    min-height: 220px;
     border-radius: 22px;
-    color: var(--text-soft);
-    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    background: linear-gradient(155deg, var(--asset-color, var(--surface)) 0%, rgba(6, 7, 10, 0.92) 130%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 14px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
   .asset-card:hover {
-    border-color: var(--asset-color, rgba(255, 255, 255, 0.3));
-    background: var(--surface-strong);
     transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 22px 44px rgba(0, 0, 0, 0.5);
   }
 
-  .asset-card .asset-icon {
-    width: 40px;
-    height: 40px;
+  .asset-cover {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .asset-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.82;
+  }
+
+  .asset-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(155deg, var(--asset-color, transparent) 0%, transparent 65%);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .asset-glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 1px solid var(--asset-color, var(--line));
-    color: var(--asset-color, var(--text));
+    background: #fff;
+    filter: blur(60px);
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  .asset-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--bg);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .asset-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px 16px 14px;
+    background: linear-gradient(180deg, rgba(6, 7, 10, 0) 30%, rgba(6, 7, 10, 0.88) 100%);
+  }
+
+  .asset-label {
+    font-size: 0.95rem;
     font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
   }
 
-  .asset-card .asset-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .asset-card .asset-sub {
-    font-size: 0.8rem;
+  .asset-sub {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   /* ---------- Cards ---------- */
@@ -522,29 +576,54 @@
 
     <div class="assets-grid panel" id="panel-assets" hidden>
       <a class="asset-card" style="--asset-color: #8B6FEF;" href="Team_Assets/gpt-game/index.html">
-        <div class="asset-icon">1</div>
-        <div class="asset-label">GPT Game</div>
-        <div class="asset-sub">Guess the next word, kid-to-adult difficulty</div>
+        <div class="asset-cover"><img class="asset-media" src="Team_Assets/gpt-game/landing.png" alt=""></div>
+        <div class="asset-tint"></div>
+        <div class="asset-glow"></div>
+        <div class="asset-badge">1</div>
+        <div class="asset-info">
+          <div class="asset-label">GPT Game</div>
+          <div class="asset-sub">Guess the next word, kid-to-adult difficulty</div>
+        </div>
       </a>
       <a class="asset-card" style="--asset-color: #35C6C2;" href="Team_Assets/coppelia_drone/index.html">
-        <div class="asset-icon">2</div>
-        <div class="asset-label">Coppelia Drone</div>
-        <div class="asset-sub">Fly to the fire, taught by reinforcement learning</div>
+        <div class="asset-cover"><img class="asset-media" src="Team_Assets/coppelia_drone/coppelia.png" alt=""></div>
+        <div class="asset-tint"></div>
+        <div class="asset-glow"></div>
+        <div class="asset-badge">2</div>
+        <div class="asset-info">
+          <div class="asset-label">Coppelia Drone</div>
+          <div class="asset-sub">Fly to the fire, taught by reinforcement learning</div>
+        </div>
       </a>
       <a class="asset-card" style="--asset-color: #E0748A;" href="Team_Assets/human_vs_ai/index.html">
-        <div class="asset-icon">3</div>
-        <div class="asset-label">Human vs AI</div>
-        <div class="asset-sub">Find the object faster than a vision model</div>
+        <div class="asset-cover"><img class="asset-media" src="Team_Assets/human_vs_ai/main-page.png" alt=""></div>
+        <div class="asset-tint"></div>
+        <div class="asset-glow"></div>
+        <div class="asset-badge">3</div>
+        <div class="asset-info">
+          <div class="asset-label">Human vs AI</div>
+          <div class="asset-sub">Find the object faster than a vision model</div>
+        </div>
       </a>
       <a class="asset-card" style="--asset-color: #7B9FE0;" href="Team_Assets/segmentation/index.html">
-        <div class="asset-icon">4</div>
-        <div class="asset-label">Live Fire Segmentation</div>
-        <div class="asset-sub">Real drone, live Jetson inference</div>
+        <div class="asset-cover"><img class="asset-media" src="Team_Assets/segmentation/qualitative.png" alt=""></div>
+        <div class="asset-tint"></div>
+        <div class="asset-glow"></div>
+        <div class="asset-badge">4</div>
+        <div class="asset-info">
+          <div class="asset-label">Live Fire Segmentation</div>
+          <div class="asset-sub">Real drone, live Jetson inference</div>
+        </div>
       </a>
       <a class="asset-card" style="--asset-color: #6FCF97;" href="Team_Assets/Babis/index.html">
-        <div class="asset-icon">5</div>
-        <div class="asset-label">Babi</div>
-        <div class="asset-sub">Voice-driven grocery assistant</div>
+        <div class="asset-cover"><img class="asset-media" src="Team_Assets/Babis/main-page.png" alt=""></div>
+        <div class="asset-tint"></div>
+        <div class="asset-glow"></div>
+        <div class="asset-badge">5</div>
+        <div class="asset-info">
+          <div class="asset-label">Babi</div>
+          <div class="asset-sub">Voice-driven grocery assistant</div>
+        </div>
       </a>
     </div>
   </main>
