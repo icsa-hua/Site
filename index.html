@@ -144,14 +144,38 @@
     pointer-events: none;
   }
 
+  /* Cards with real footage/screenshots: media fills the panel, a color
+     wash keeps it tied to the project's accent, glow adds a soft highlight */
   .card-cover {
     position: absolute;
     inset: 0;
-    background-image: var(--card-image, none);
-    background-size: cover;
-    background-position: center;
-    opacity: 0.35;
-    mix-blend-mode: overlay;
+    overflow: hidden;
+  }
+
+  .card-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.82;
+  }
+
+  .card-media-fallback {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-media-video { display: none; }
+    .card-media-fallback { display: block; }
+  }
+
+  .card-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(155deg, var(--card-color) 0%, transparent 65%);
+    opacity: 0.4;
+    pointer-events: none;
   }
 
   .card-badge {
@@ -295,10 +319,16 @@
   <main>
     <div class="grid">
 
-      <a class="card" style="--card-color: var(--card-mosaic); --card-image: url('Mosaic/cover.jpg');" href="Mosaic/index.html">
+      <a class="card" style="--card-color: var(--card-mosaic);" href="Mosaic/index.html">
         <div class="card-visual">
+          <div class="card-cover">
+            <video class="card-media card-media-video" autoplay muted loop playsinline preload="auto" poster="Mosaic/demo.png">
+              <source src="Mosaic/video.mp4" type="video/mp4">
+            </video>
+            <img class="card-media card-media-fallback" src="Mosaic/demo.png" alt="">
+          </div>
+          <div class="card-tint"></div>
           <div class="card-glow"></div>
-          <div class="card-cover"></div>
           <div class="card-badge">A</div>
           <div class="card-logo"><img src="Mosaic/logo.png" alt="Mosaic logo"></div>
         </div>
@@ -311,10 +341,9 @@
         </div>
       </a>
 
-      <a class="card" style="--card-color: var(--card-remerge); --card-image: url('Remerge/cover.jpg');" href="Remerge/index.html">
+      <a class="card" style="--card-color: var(--card-remerge);" href="Remerge/index.html">
         <div class="card-visual">
           <div class="card-glow"></div>
-          <div class="card-cover"></div>
           <div class="card-badge">B</div>
           <div class="card-logo"><img src="Remerge/logo.svg" alt="Remerge logo"></div>
         </div>
@@ -327,10 +356,16 @@
         </div>
       </a>
 
-      <a class="card" style="--card-color: var(--card-codrones); --card-image: url('Codrones/cover.jpg');" href="Codrones/index.html">
+      <a class="card" style="--card-color: var(--card-codrones);" href="Codrones/index.html">
         <div class="card-visual">
+          <div class="card-cover">
+            <video class="card-media card-media-video" autoplay muted loop playsinline preload="auto" poster="Codrones/preview_poster.jpg">
+              <source src="Codrones/fire_segmentation.mp4" type="video/mp4">
+            </video>
+            <img class="card-media card-media-fallback" src="Codrones/preview_poster.jpg" alt="">
+          </div>
+          <div class="card-tint"></div>
           <div class="card-glow"></div>
-          <div class="card-cover"></div>
           <div class="card-badge">C</div>
           <div class="card-logo"><img src="Codrones/logo.png" alt="CoDrones logo"></div>
         </div>
@@ -343,10 +378,9 @@
         </div>
       </a>
 
-      <a class="card" style="--card-color: var(--card-archipelago); --card-image: url('Archipelago/cover.jpg');" href="Archipelago/index.html">
+      <a class="card" style="--card-color: var(--card-archipelago);" href="Archipelago/index.html">
         <div class="card-visual card-visual--wide">
           <div class="card-glow"></div>
-          <div class="card-cover"></div>
           <div class="card-badge">D</div>
           <div class="card-logo card-logo--dual">
             <img src="Archipelago/logo_archipelago.svg" alt="Archipelago logo">
