@@ -169,6 +169,7 @@
     text-align: center;
   }
   .stat .value {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text);
@@ -279,8 +280,11 @@
 
     <section>
       <h2><span class="num">3</span> Video</h2>
-      <p class="desc">A demonstration video for this project is in progress.</p>
-      <div class="video-missing">Video coming soon</div>
+      <p class="desc">A short walkthrough of the system running on real footage.</p>
+      <video controls preload="metadata" poster="demo.png">
+        <source src="fire_segmentation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </section>
 
     <div class="links">

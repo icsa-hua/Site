@@ -41,10 +41,10 @@
     object-fit: contain;
   }
 
-  .logo-hua { height: 46px; }
-  .logo-icsa { height: 46px; }
+  .logo-hua { height: 60px; }
+  .logo-icsa { height: 60px; }
   .logo-vradia {
-    height: 94px;
+    height: 122px;
     border-radius: 14px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
   }
@@ -87,27 +87,21 @@
   }
 
   .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-
-  @media (max-width: 680px) {
-    .grid { grid-template-columns: 1fr; }
-    .logo-vradia { height: 76px; }
-    .logo-hua, .logo-icsa { height: 38px; }
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
   }
 
   /* ---------- Cards ---------- */
   .card {
     position: relative;
-    display: block;
-    height: 260px;
+    display: flex;
+    align-items: stretch;
+    min-height: 168px;
     border-radius: 22px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    background: linear-gradient(165deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
     border: 1px solid var(--line);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 14px 30px rgba(0, 0, 0, 0.35);
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -124,16 +118,29 @@
     outline-offset: 3px;
   }
 
+  /* Left accent panel: per-project color, holds the logo + badge */
+  .card-visual {
+    position: relative;
+    width: 260px;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(155deg, var(--card-color) 0%, rgba(6, 7, 10, 0.92) 130%);
+  }
+
   .card-glow {
     position: absolute;
-    width: 260px;
-    height: 260px;
-    right: -80px;
-    bottom: -90px;
+    width: 220px;
+    height: 220px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: var(--card-color);
-    filter: blur(70px);
-    opacity: 0.5;
+    background: #fff;
+    filter: blur(60px);
+    opacity: 0.18;
     pointer-events: none;
   }
 
@@ -143,76 +150,113 @@
     background-image: var(--card-image, none);
     background-size: cover;
     background-position: center;
-    opacity: 0.5;
-  }
-
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(6, 7, 10, 0) 30%, rgba(6, 7, 10, 0.88) 100%);
+    opacity: 0.35;
+    mix-blend-mode: overlay;
   }
 
   .card-badge {
     position: absolute;
-    top: 16px;
-    left: 16px;
-    width: 32px;
-    height: 32px;
+    top: 14px;
+    left: 14px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.85);
     color: var(--bg);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .card-text {
-    position: absolute;
-    left: 22px;
-    right: 22px;
-    bottom: 20px;
-    color: #fff;
-  }
-
-  .card-text h2 {
-    margin: 0 0 4px;
-    font-size: 1.3rem;
-    font-weight: 700;
-  }
-
-  .card-text span {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.75);
-  }
-
   .card-logo {
-    position: absolute;
-    top: 14px;
-    right: 14px;
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: rgba(255, 255, 255, 0.94);
     border-radius: 12px;
-    padding: 10px 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    padding: 12px 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   }
 
   .card-logo img {
     display: block;
-    height: 44px;
+    height: 57px;
     width: auto;
-    max-width: 106px;
+    max-width: 138px;
     object-fit: contain;
   }
 
   .card-logo .divider {
     width: 1px;
-    height: 34px;
+    height: 44px;
     background: rgba(59, 51, 42, 0.18);
+  }
+
+  .card-logo--dual img {
+    max-width: 118px;
+  }
+
+  .card-visual--wide {
+    width: 320px;
+  }
+
+  /* Right body: title + CTA */
+  .card-body {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 30px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  }
+
+  .card-text h2 {
+    margin: 0 0 6px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .card-text span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .card-cta {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .card:hover .card-cta {
+    background: var(--card-color);
+    border-color: transparent;
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 680px) {
+    .logo-vradia { height: 99px; }
+    .logo-hua, .logo-icsa { height: 49px; }
+
+    .card { flex-direction: column; }
+    .card-visual { width: 100%; padding: 22px 0; }
+    .card-body { flex-direction: column; align-items: flex-start; padding: 20px 22px; gap: 14px; }
+    .card-cta { align-self: flex-end; }
   }
 </style>
 </head>
@@ -252,54 +296,70 @@
     <div class="grid">
 
       <a class="card" style="--card-color: var(--card-mosaic); --card-image: url('Mosaic/cover.jpg');" href="Mosaic/index.html">
-        <div class="card-glow"></div>
-        <div class="card-cover"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">A</div>
-        <div class="card-logo"><img src="Mosaic/logo.png" alt="Mosaic logo"></div>
-        <div class="card-text">
-          <h2>Mosaic</h2>
-          <span>View project →</span>
+        <div class="card-visual">
+          <div class="card-glow"></div>
+          <div class="card-cover"></div>
+          <div class="card-badge">A</div>
+          <div class="card-logo"><img src="Mosaic/logo.png" alt="Mosaic logo"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            <h2>Mosaic</h2>
+            <span>View project</span>
+          </div>
+          <div class="card-cta" aria-hidden="true">→</div>
         </div>
       </a>
 
       <a class="card" style="--card-color: var(--card-remerge); --card-image: url('Remerge/cover.jpg');" href="Remerge/index.html">
-        <div class="card-glow"></div>
-        <div class="card-cover"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">B</div>
-        <div class="card-logo"><img src="Remerge/logo.svg" alt="Remerge logo"></div>
-        <div class="card-text">
-          <h2>Remerge</h2>
-          <span>View project →</span>
+        <div class="card-visual">
+          <div class="card-glow"></div>
+          <div class="card-cover"></div>
+          <div class="card-badge">B</div>
+          <div class="card-logo"><img src="Remerge/logo.svg" alt="Remerge logo"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            <h2>Remerge</h2>
+            <span>View project</span>
+          </div>
+          <div class="card-cta" aria-hidden="true">→</div>
         </div>
       </a>
 
       <a class="card" style="--card-color: var(--card-codrones); --card-image: url('Codrones/cover.jpg');" href="Codrones/index.html">
-        <div class="card-glow"></div>
-        <div class="card-cover"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">C</div>
-        <div class="card-logo"><img src="Codrones/logo.png" alt="CoDrones logo"></div>
-        <div class="card-text">
-          <h2>CoDrones</h2>
-          <span>View project →</span>
+        <div class="card-visual">
+          <div class="card-glow"></div>
+          <div class="card-cover"></div>
+          <div class="card-badge">C</div>
+          <div class="card-logo"><img src="Codrones/logo.png" alt="CoDrones logo"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            <h2>CoDrones</h2>
+            <span>View project</span>
+          </div>
+          <div class="card-cta" aria-hidden="true">→</div>
         </div>
       </a>
 
       <a class="card" style="--card-color: var(--card-archipelago); --card-image: url('Archipelago/cover.jpg');" href="Archipelago/index.html">
-        <div class="card-glow"></div>
-        <div class="card-cover"></div>
-        <div class="card-overlay"></div>
-        <div class="card-badge">D</div>
-        <div class="card-logo">
-          <img src="Archipelago/logo_archipelago.svg" alt="Archipelago logo">
-          <div class="divider"></div>
-          <img src="K2W/logo.png" alt="K2W logo">
+        <div class="card-visual card-visual--wide">
+          <div class="card-glow"></div>
+          <div class="card-cover"></div>
+          <div class="card-badge">D</div>
+          <div class="card-logo card-logo--dual">
+            <img src="Archipelago/logo_archipelago.svg" alt="Archipelago logo">
+            <div class="divider"></div>
+            <img src="K2W/logo.png" alt="K2W logo">
+          </div>
         </div>
-        <div class="card-text">
-          <h2>Archipelago + K2W</h2>
-          <span>View project →</span>
+        <div class="card-body">
+          <div class="card-text">
+            <h2>Archipelago + K2W</h2>
+            <span>View project</span>
+          </div>
+          <div class="card-cta" aria-hidden="true">→</div>
         </div>
       </a>
 
