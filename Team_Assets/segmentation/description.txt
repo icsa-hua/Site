@@ -1,0 +1,4 @@
+this asset shows a live inference of a teacher-student training based on the
+paper attached in this subdirectory. The interface only shows a live stream with
+the camera feed from a real-drone we have connected to a jetson, and we see the
+inference results from the jetson. 

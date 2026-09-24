@@ -1,0 +1,14 @@
+The human vs ai game is a simple game as well, that pits each other in a find
+waldo-type of game. Basically it prompts the user and the vision model to find
+random objects inside the shown images. With each level the image becomes harder,
+for either the human or the vision model. For instance the third image is a very
+    cluttered desk with many similar objects and the prompt requests an item. On
+    another occasion the ai model has to find something inside an image that
+    shows heavy fog. Then after 5 images, the final score is pitched. 
+
+The main goal for this asset is to show how fast the vision models are in
+comparison to human perception and eye sight, but also show that they are not
+perfect, essentially the trade-off between accuracy and efficiency. The
+screenshot shows the main interface, and then the other thing shown in the
+display is the image in the center of the screen. Again simple design but
+efficient. 

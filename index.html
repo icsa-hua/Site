@@ -176,28 +176,31 @@
     justify-content: center;
     gap: 8px;
     text-align: center;
+    text-decoration: none;
     background: var(--surface);
-    border: 1px dashed var(--line);
+    border: 1px solid var(--line);
     border-radius: 22px;
     color: var(--text-soft);
-    transition: border-color 0.25s ease, background 0.25s ease;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
 
   .asset-card:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: var(--asset-color, rgba(255, 255, 255, 0.3));
     background: var(--surface-strong);
+    transform: translateY(-4px);
   }
 
   .asset-card .asset-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid var(--line);
+    border: 1px solid var(--asset-color, var(--line));
+    color: var(--asset-color, var(--text));
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    color: var(--text);
+    font-weight: 700;
   }
 
   .asset-card .asset-label {
@@ -518,31 +521,31 @@
     </div>
 
     <div class="assets-grid panel" id="panel-assets" hidden>
-      <div class="asset-card">
+      <a class="asset-card" style="--asset-color: #8B6FEF;" href="Team_Assets/gpt-game/index.html">
         <div class="asset-icon">1</div>
-        <div class="asset-label">Coming soon</div>
-        <div class="asset-sub">Asset placeholder</div>
-      </div>
-      <div class="asset-card">
+        <div class="asset-label">GPT Game</div>
+        <div class="asset-sub">Guess the next word, kid-to-adult difficulty</div>
+      </a>
+      <a class="asset-card" style="--asset-color: #35C6C2;" href="Team_Assets/coppelia_drone/index.html">
         <div class="asset-icon">2</div>
-        <div class="asset-label">Coming soon</div>
-        <div class="asset-sub">Asset placeholder</div>
-      </div>
-      <div class="asset-card">
+        <div class="asset-label">Coppelia Drone</div>
+        <div class="asset-sub">Fly to the fire, taught by reinforcement learning</div>
+      </a>
+      <a class="asset-card" style="--asset-color: #E0748A;" href="Team_Assets/human_vs_ai/index.html">
         <div class="asset-icon">3</div>
-        <div class="asset-label">Coming soon</div>
-        <div class="asset-sub">Asset placeholder</div>
-      </div>
-      <div class="asset-card">
+        <div class="asset-label">Human vs AI</div>
+        <div class="asset-sub">Find the object faster than a vision model</div>
+      </a>
+      <a class="asset-card" style="--asset-color: #7B9FE0;" href="Team_Assets/segmentation/index.html">
         <div class="asset-icon">4</div>
-        <div class="asset-label">Coming soon</div>
-        <div class="asset-sub">Asset placeholder</div>
-      </div>
-      <div class="asset-card">
+        <div class="asset-label">Live Fire Segmentation</div>
+        <div class="asset-sub">Real drone, live Jetson inference</div>
+      </a>
+      <a class="asset-card" style="--asset-color: #6FCF97;" href="Team_Assets/Babis/index.html">
         <div class="asset-icon">5</div>
-        <div class="asset-label">Coming soon</div>
-        <div class="asset-sub">Asset placeholder</div>
-      </div>
+        <div class="asset-label">Babi</div>
+        <div class="asset-sub">Voice-driven grocery assistant</div>
+      </a>
     </div>
   </main>
 
@@ -551,13 +554,24 @@
       var tabs = document.querySelectorAll('.tab-btn');
       var panels = { projects: document.getElementById('panel-projects'), assets: document.getElementById('panel-assets') };
 
+      function activate(target) {
+        var btn = document.querySelector('.tab-btn[data-tab="' + target + '"]');
+        if (!btn) return;
+        tabs.forEach(function (b) { b.classList.toggle('active', b === btn); });
+        Object.keys(panels).forEach(function (key) { panels[key].hidden = key !== target; });
+      }
+
       tabs.forEach(function (btn) {
         btn.addEventListener('click', function () {
           var target = btn.getAttribute('data-tab');
-          tabs.forEach(function (b) { b.classList.toggle('active', b === btn); });
-          Object.keys(panels).forEach(function (key) { panels[key].hidden = key !== target; });
+          activate(target);
+          history.replaceState(null, '', '#' + target);
         });
       });
+
+      if (window.location.hash === '#assets') {
+        activate('assets');
+      }
     })();
   </script>
   <script src="assets/theme.js" defer></script>

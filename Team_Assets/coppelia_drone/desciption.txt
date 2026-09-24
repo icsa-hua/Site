@@ -1,0 +1,15 @@
+The specific asset is a combination of a web interface that introduces two
+interfaces. The one is the control unit, aka, this display shows two different
+ways to control a drone, through voice recognition and specific commands in
+greek, and the second is through the arrow keys (the traditional way). this
+specific interface also includes the goal of this "game" which is to move the
+drone on top of a fire controlling it with these options. The second interface is
+the coppelia environment which acts as the way to show to the user the immediate
+effect a move he makes has on the drone. If the drone does too many moves then it
+loses as the reward function is way to low. If the drone hits an oobstacle it
+fails. If it goes on top of the fire, the game ends and the user can restart.
+Both interfaces are shown in the images. 
+
+This specific asset, has the goal of teaching to children the process that RL
+uses to learn which is to fail a bunch of time capturing the reward value each
+time, until it consistently reaches the target. 

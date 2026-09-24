@@ -1,0 +1,10 @@
+this service is a grocery assistant whose role is twofold. First to obey voice
+commands to include groceries on the shopping kart and secondly to inform about
+groceries dropped prices and about product offers. The assistant is called Babi
+it is a lightweight LLM that also uses another model for voice generation, as the
+service supports that. Babi will speak to state that he did the command we told
+it to. The interface captured in the screenshots, is simplistic, and the products
+include a bunch of groceries, milk, yogurt, salads and more healthy foods. In
+general the main point of this service is to promote healthy meals and babi is a
+way to assist people to make their shopping in an efficient but also economy
+friendly way. 

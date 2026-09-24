@@ -1,0 +1,9 @@
+this assets focuses on showing to different age-groups how the LLMs formulate
+phrases. Depending on the age group the phrases become more elaborate and also
+the answers reveal how the LLM thinks. The screenshots show exactly that change
+between ages. The focus of this asset is to help younger ages understand how an
+LLM "thinks" and understands the meaning of the phrase. This is a simplistic game
+and the design is also simple to give focues to the questions and the choices the
+user has to make. The users in the different categories can change the
+temperature of the model so that the answers change and become more random or
+more crazy. 

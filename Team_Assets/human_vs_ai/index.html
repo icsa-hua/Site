@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Human vs AI — Βραδιά του Ερευνητή</title>
+<link rel="stylesheet" href="../../assets/theme.css">
+<style>
+  :root {
+    --accent: #E0748A;
+    --accent-soft: rgba(224, 116, 138, 0.16);
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 72px;
+  }
+  .top {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .back {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .back:hover { color: var(--text); }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  main {
+    width: 100%;
+    max-width: 900px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--text-soft);
+    margin: 0 0 24px;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 32px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  section h2 {
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  section > p.desc {
+    color: var(--text-soft);
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .figure {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px;
+  }
+  .figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background: #050a14;
+  }
+  .figure figcaption {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+  .launch {
+    text-align: center;
+    margin-top: 8px;
+  }
+  .launch a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #0A0C10;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 18px 44px;
+    border-radius: 999px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .launch a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  }
+  .launch p {
+    margin: 14px 0 0;
+    color: var(--text-soft);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg-scene" aria-hidden="true">    <div class="bg-spheres">
+      <div class="bg-blob b1"></div>
+      <div class="bg-blob b2"></div>
+      <div class="bg-blob b3"></div>
+      <div class="bg-blob b4"></div>
+    </div>
+    <div class="bg-noise"></div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="top">
+    <a class="back" href="../../index.html#assets">&larr; Back to portal</a>
+    <span class="badge">3</span>
+  </div>
+  <main>
+    <h1 class="gradient-text">Human vs AI</h1>
+    <p class="subtitle">«Βρες το κουτάλι» — a find-the-object race between human eyes and a vision model.</p>
+    <hr>
+
+    <section>
+      <h2><span class="num">1</span> About</h2>
+      <p class="desc">A head-to-head "spot the object" game: you and a vision model are both prompted to find the same item hidden somewhere in an image, and both are timed. Five rounds, each harder than the last — a cluttered desk full of near-identical objects, a scene shrouded in heavy fog, and other visually tricky setups designed to challenge one side more than the other. After five images, the scores are tallied and compared. The goal is to make a trade-off tangible: vision models are often dramatically faster than human perception, but they aren't infallible — this game is a quick, visual way to see both the speed and the failure modes side by side.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span> Preview</h2>
+      <p class="desc">The main interface: a live score line (you vs. the model) above the round counter, with the target image in the center of the screen.</p>
+      <figure class="figure">
+        <img src="main-page.png" alt="Human vs AI interface: score line for you and the model above the round counter, with the search image centered below">
+        <figcaption>Round 1 of 5 — find the target object before the model does.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span> Play</h2>
+      <div class="launch">
+        <a href="#" target="_blank" rel="noopener"
+            data-asset-link="http://10.100.136.190:8099">Challenge the AI →</a>
+        <p>Opens the interactive game in a new tab.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../assets/theme.js" defer></script>
+</body>
+</html>

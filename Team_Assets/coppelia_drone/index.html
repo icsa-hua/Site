@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coppelia Drone — Βραδιά του Ερευνητή</title>
+<link rel="stylesheet" href="../../assets/theme.css">
+<style>
+  :root {
+    --accent: #35C6C2;
+    --accent-soft: rgba(53, 198, 194, 0.16);
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 72px;
+  }
+  .top {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .back {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .back:hover { color: var(--text); }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  main {
+    width: 100%;
+    max-width: 900px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--text-soft);
+    margin: 0 0 24px;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 32px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  section h2 {
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  section > p.desc {
+    color: var(--text-soft);
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .figure {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px;
+  }
+  .figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background: #050608;
+  }
+  .figure figcaption {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+  .example-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) {
+    .example-grid { grid-template-columns: 1fr; }
+  }
+  .launch {
+    text-align: center;
+    margin-top: 8px;
+  }
+  .launch a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #0A0C10;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 18px 44px;
+    border-radius: 999px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .launch a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  }
+  .launch p {
+    margin: 14px 0 0;
+    color: var(--text-soft);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg-scene" aria-hidden="true">    <div class="bg-spheres">
+      <div class="bg-blob b1"></div>
+      <div class="bg-blob b2"></div>
+      <div class="bg-blob b3"></div>
+      <div class="bg-blob b4"></div>
+    </div>
+    <div class="bg-noise"></div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="top">
+    <a class="back" href="../../index.html#assets">&larr; Back to portal</a>
+    <span class="badge">2</span>
+  </div>
+  <main>
+    <h1 class="gradient-text">Coppelia Drone</h1>
+    <p class="subtitle">«Οδήγησε το Drone μέχρι τη φωτιά» — teaching reinforcement learning by trial, error, and reward.</p>
+    <hr>
+
+    <section>
+      <h2><span class="num">1</span> About</h2>
+      <p class="desc">A two-part interface built around a single goal: fly a simulated drone on top of a fire. The control panel offers two ways to fly — Greek voice commands ("μπρος", "πίσω", "αριστερά", "δεξιά") recognized live in the browser, or the traditional arrow keys — while the CoppeliaSim environment shows the immediate effect of every move. Too many moves and the reward drops too low to recover; hit an obstacle and the run fails; reach the fire and the episode ends in a win, ready to restart. The point isn't just flying a drone — it's making visible, one attempt at a time, how reinforcement learning actually learns: fail repeatedly, track the reward each time, and keep going until it consistently reaches the target.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span> Preview</h2>
+      <p class="desc">The control interface (voice or arrow-key input, live move counter) alongside the CoppeliaSim scene the drone is actually flying in.</p>
+      <div class="example-grid">
+        <figure class="figure">
+          <img src="main-page.png" alt="Control interface: voice command microphone, move counter, and arrow-key fallback controls">
+          <figcaption>Control panel — voice commands in Greek or arrow keys, with a live move counter.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="coppelia.png" alt="CoppeliaSim scene showing the drone, an obstacle, and the fire target on a grass plane">
+          <figcaption>The CoppeliaSim environment — drone, obstacle, and fire target.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span> Play</h2>
+      <div class="launch">
+        <a href="#" target="_blank" rel="noopener"
+            data-asset-link="http://10.100.136.190:8091">Fly the Drone →</a>
+        <p>Opens the interactive simulation in a new tab.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../assets/theme.js" defer></script>
+</body>
+</html>
